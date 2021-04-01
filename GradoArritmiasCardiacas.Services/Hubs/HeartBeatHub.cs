@@ -5,9 +5,16 @@ namespace GradoArritmiasCardiacas.Services.Hubs
 {
    public class HeartBeatHub : Hub
    {
-      public async Task SendHeartBeat(int number)
+      int count = 0;
+      public async Task SendHeartBeat()
       {
-         await Clients.Others.SendAsync("ReceiveHeartBeat", number);
+         while (count < 150)
+         {
+            string cadena = ArduinoService.Instance.Arduino.ReadLine();
+            await Clients.Caller.SendAsync("ReceiveHeartBeat", cadena);
+            count++;
+         }
+         count = 0;
       }
    }
 }

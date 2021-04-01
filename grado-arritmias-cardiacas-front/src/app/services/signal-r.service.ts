@@ -29,8 +29,8 @@ private hubConnection: signalR.HubConnection
     });
   }
 
-  public invocar() {
-    this.hubConnection.invoke('SendHeartBeat', 123456)
+  public sendHeartBeat() {
+    this.hubConnection.invoke('SendHeartBeat')
     .catch(err => console.error(err));
   }
 }

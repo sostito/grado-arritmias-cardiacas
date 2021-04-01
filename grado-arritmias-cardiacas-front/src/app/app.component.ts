@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     this.signalRService.addTransferChartDataListener();
   }
 
-  invocar() {
-    this.signalRService.invocar()
+  sendHeartBeat() {
+    this.signalRService.sendHeartBeat()
   }
 }
