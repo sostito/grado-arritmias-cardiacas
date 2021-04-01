@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>grado_arritmias_cardiacas</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GradoArritmiasCardiacas.Services\GradoArritmiasCardiacas.Services.csproj" />
+  </ItemGroup>
+
+</Project>
