@@ -1,10 +1,12 @@
 import { ChartModel } from './interfaces/ChartModel';
 import { Task } from './interfaces/TaskModel';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SignalRService } from './services/signal-r.service';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,18 @@ import { SignalRService } from './services/signal-r.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent /*implements OnInit*/ {
 
+
+  enabledGraph = false;
+
+  /*
   chartValue: ChartModel[] = [
     { data: [], label: 'Series A' },
-  ]
+  ]*/
+
+
+  chartValue: [] = []
 
   tasks: Observable<Task[]>;
 
@@ -33,13 +42,15 @@ export class AppComponent implements OnInit {
 
         let result2 = result[149].map((item) => Number(item))
 
+        /*
         let newCharModel: ChartModel[] = [
           { data: result2, label: 'Series A' },
         ]
         this.chartValue = newCharModel;
+        */
+        this.chartValue = result2;
       }
     })
-
   }
 
   ngOnInit() {
@@ -50,6 +61,11 @@ export class AppComponent implements OnInit {
   sendHeartBeat() {
     this.signalRService.dataChartLine = [];
     this.signalRService.sendHeartBeat();
+  }
+
+  enabled() {
+    this.sendHeartBeat()
+    this.enabledGraph = true;
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="enabledGraph">
   <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
@@ -6,4 +6,7 @@
     </div>
   </div>
 </div>
-<button (click)="sendHeartBeat()">Activar</button>
+
+<!--<button (click)="sendHeartBeat()">Activar</button>-->
+
+<button (click)="enabled()">Activar</button>
