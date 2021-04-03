@@ -32,6 +32,7 @@ export class SignalRService {
 
   addTransferChartDataListener = () => {
     this.hubConnection.on('ReceiveHeartBeat', (data: number) => {
+      console.log(data)
       this.addTask(data)
     });
   }

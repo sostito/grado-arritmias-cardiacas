@@ -48,6 +48,7 @@ export class AppComponent /*implements OnInit*/ {
         ]
         this.chartValue = newCharModel;
         */
+
         this.chartValue = result2;
       }
     })

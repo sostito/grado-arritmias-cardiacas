@@ -35,7 +35,6 @@ export class LineComponent {
   public chart: ChartComponent;
 
   @Input() lineChartData: [] = [];
-  public lineChartLabels: Label[] = [];
   public lineChartOptions = {
     responsive: true,
   };
@@ -43,10 +42,6 @@ export class LineComponent {
   tasks: Observable<Task[]>;
 
   constructor() {
-    for (let index = 1; index < 40; index++) {
-      this.lineChartLabels.push(index.toString())
-    }
-
     for (; this.i < 100; this.i++) {
       if (Math.random() > 0.5) {
         if (this.value < 25) {
@@ -68,16 +63,15 @@ export class LineComponent {
     this.intervalId = setTimeout(() => {
       this.j++;
       this.i++;
-      console.log(this.lineChartData[this.j])
         this.series1.push({ x: this.i, y: this.lineChartData[this.j] });
         this.series1.shift();
         args.chart.series[0].dataSource = this.series1;
       args.chart.refresh();
-      if (this.j > 148) {
+      if (this.j > 149) {
         clearInterval(this.intervalId)
         this.j = 0;
       }
-    },100)
+    }, 100)
 
   }
 
