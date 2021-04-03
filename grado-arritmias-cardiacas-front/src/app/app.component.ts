@@ -48,7 +48,8 @@ export class AppComponent implements OnInit {
   }
 
   sendHeartBeat() {
-    this.signalRService.sendHeartBeat()
+    this.signalRService.dataChartLine = [];
+    this.signalRService.sendHeartBeat();
   }
 
 }
