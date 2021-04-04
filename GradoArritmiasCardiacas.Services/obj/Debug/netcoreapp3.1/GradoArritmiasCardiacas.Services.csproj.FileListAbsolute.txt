@@ -7,3 +7,6 @@ C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\obj\Deb
 C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Services.csproj.CoreCompileInputs.cache
 C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Services.dll
 C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Services.pdb
+C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.dll
+C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.pdb
+C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Services\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Services.csproj.CopyComplete

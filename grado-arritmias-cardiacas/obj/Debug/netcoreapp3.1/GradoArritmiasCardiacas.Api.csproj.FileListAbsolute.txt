@@ -37,3 +37,5 @@ C:\Desarrollo\grado-arritmias-cardiacas\grado-arritmias-cardiacas\bin\Debug\netc
 C:\Desarrollo\grado-arritmias-cardiacas\grado-arritmias-cardiacas\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Security.AccessControl.dll
 C:\Desarrollo\grado-arritmias-cardiacas\grado-arritmias-cardiacas\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Desarrollo\grado-arritmias-cardiacas\grado-arritmias-cardiacas\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
+C:\Desarrollo\grado-arritmias-cardiacas\grado-arritmias-cardiacas\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.dll
+C:\Desarrollo\grado-arritmias-cardiacas\grado-arritmias-cardiacas\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.pdb

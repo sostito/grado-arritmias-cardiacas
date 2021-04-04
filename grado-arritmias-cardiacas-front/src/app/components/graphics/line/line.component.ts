@@ -1,15 +1,11 @@
 import { Task } from './../../../interfaces/TaskModel';
 import { Component, Input, ViewChild } from '@angular/core';
-import { Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
 
 import {
   ILoadedEventArgs,
-  Series,
-  ChartTheme,
   ChartComponent
 } from "@syncfusion/ej2-angular-charts";
-import { getElement } from "@syncfusion/ej2-charts";
 
 @Component({
   selector: 'app-line',
@@ -18,28 +14,39 @@ import { getElement } from "@syncfusion/ej2-charts";
 })
 export class LineComponent {
 
-  public series1: Object[] = [];
+  public seriesRed: Object[] = [];
+  public seriesIr: Object[] = [];
   public value: number = 10;
   public intervalId: any;
   public setTimeoutValue: number;
   i: number = 0;
   j: number = 0;
-  //Initializing Primary Y Axis
-  public primaryYAxis: Object = {
-    minimum: 0,
-    maximum: 160000
-  };
-
 
   @ViewChild("chart")
   public chart: ChartComponent;
 
-  @Input() lineChartData: [] = [];
+  @Input() red: [] = [];
+  @Input() ir: [] = [];
+  @Input() hr: [] = [];
+  @Input() hrValid: [] = [];
+  @Input() SPO2: [] = [];
+  @Input() SPO2Valid: [] = [];
+  tasks: Observable<Task[]>;
+
   public lineChartOptions = {
     responsive: true,
   };
 
-  tasks: Observable<Task[]>;
+  public animation1: Object = {
+    enable: false
+  };
+
+  //Initializing Primary Y Axis
+  public primaryYAxis: Object = {
+    minimum: 0,
+    maximum: 80000
+  };
+
 
   constructor() {
     for (; this.i < 100; this.i++) {
@@ -50,25 +57,23 @@ export class LineComponent {
           this.value -= 2.0;
         }
       }
-      this.series1[this.i] = { x: this.i, y: this.value };
-      this.series1[this.i] = { x: this.i, y: this.value };
+      this.seriesRed[this.i] = { x: this.i, y: this.value };
+      this.seriesIr[this.i] = { x: this.i, y: this.value + 1000 };
     }
   }
-
-  public animation1: Object = {
-    enable: false
-  };
 
 
   public loaded(args: ILoadedEventArgs): void {
     this.intervalId = setTimeout(() => {
       this.j++;
       this.i++;
-        this.series1.push({ x: this.i, y: this.lineChartData[this.j] });
-        this.series1.shift();
-        args.chart.series[0].dataSource = this.series1;
-      args.chart.refresh();
-      if (this.j > 149) {
+        this.seriesRed.push({ x: this.i, y: this.red[this.j] });
+        this.seriesIr.push({ x: this.i, y: this.ir[this.j] });
+        this.seriesRed.shift();
+        this.seriesIr.shift();
+        args.chart.series[0].dataSource = this.seriesRed;
+        args.chart.refresh();
+      if (this.j > 199) {
         clearInterval(this.intervalId)
         this.j = 0;
       }

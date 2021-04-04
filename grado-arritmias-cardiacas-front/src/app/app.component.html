@@ -1,12 +1,29 @@
-<div class="container" *ngIf="enabledGraph">
+<div class="container">
+  <app-navbar></app-navbar>
+
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-10">
-      <app-line [lineChartData]="chartValue"></app-line>
+    <div class="col-10 pt-3">
+      <app-line
+        *ngIf="enabledGraph"
+        [ir]="ir"
+        [red]="red"
+        [hr]="hr"
+        [hrValid]="hrValid"
+        [SPO2]="sPO2"
+        [SPO2Valid]="sPO2Valid"
+      ></app-line>
+
+      <div *ngIf="!enabledGraph">
+        <img
+          style="border: solid 1px"
+          src="../assets/images/imagen-grafica-desenfoque.png"
+          alt="Gráfica desenfocada"
+        />
+      </div>
     </div>
   </div>
+  <button class="btn btn-primary mt-3" (click)="enabled()">
+    Realizar lectura
+  </button>
 </div>
-
-<!--<button (click)="sendHeartBeat()">Activar</button>-->
-
-<button (click)="enabled()">Activar</button>
