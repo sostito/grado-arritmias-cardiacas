@@ -51,6 +51,7 @@ export class LineComponent {
         }
       }
       this.series1[this.i] = { x: this.i, y: this.value };
+      this.series1[this.i] = { x: this.i, y: this.value };
     }
   }
 

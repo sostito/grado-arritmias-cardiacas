@@ -12,6 +12,7 @@ namespace GradoArritmiasCardiacas.Services.Hubs
          while (count < 150)
          {
             string cadena = ArduinoService.Instance.Arduino.ReadLine();
+            
             await Clients.Caller.SendAsync("ReceiveHeartBeat", cadena);
             count++;
          }
