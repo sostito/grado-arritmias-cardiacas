@@ -1,4 +1,12 @@
-<button style="margin-right: 10px;" (click)="sendHeartBeat()">Get IR</button>
-<!--<button style="margin-right: 10px;" (click)="sendHeartBeat('1')">Get SPO2</button>
-<button style="margin-right: 10px;" (click)="sendHeartBeat('2')">Get Beat AVG</button>
-<button style="margin-right: 10px;" (click)="sendHeartBeat('3')">Get Temperature</button>-->
+<div class="container" *ngIf="enabledGraph">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <app-line [lineChartData]="chartValue"></app-line>
+    </div>
+  </div>
+</div>
+
+<!--<button (click)="sendHeartBeat()">Activar</button>-->
+
+<button (click)="enabled()">Activar</button>

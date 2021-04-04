@@ -8,7 +8,8 @@ namespace GradoArritmiasCardiacas.Services.Hubs
       int count = 0;
       public async Task SendHeartBeat()
       {
-        while (count < 150)
+         ArduinoService.Instance.Arduino.DiscardInBuffer();
+         while (count < 150)
          {
             string cadena = ArduinoService.Instance.Arduino.ReadLine();
             
