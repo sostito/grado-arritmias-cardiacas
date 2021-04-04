@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "grado-arritmias-cardiacas-front"
+    }
+  },
+  "defaultProject": "grado-arritmias-cardiacas-front",
+  "cli": {
+    "analytics": false
+  }
 }
