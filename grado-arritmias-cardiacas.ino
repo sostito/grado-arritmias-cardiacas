@@ -52,9 +52,9 @@ void loop()
     irBuffer[i] = particleSensor.getIR();
     //particleSensor.nextSample(); //We're finished with this sample so move to next sample
 
-    Serial.print(F("red="));
+    Serial.print(F(""));
     Serial.print(redBuffer[i], DEC);
-    Serial.print(F(", ir="));
+    Serial.print(F(","));
     Serial.println(irBuffer[i], DEC);
   }
 
@@ -85,21 +85,20 @@ void loop()
       //particleSensor.nextSample(); //We're finished with this sample so move to next sample
 
       //send samples and calculation result to terminal program through UART
-      Serial.print(F("red="));
       Serial.print(redBuffer[i], DEC);
-      Serial.print(F(", ir="));
+      Serial.print(F(","));
       Serial.print(irBuffer[i], DEC);
 
-      Serial.print(F(", HR="));
+      Serial.print(F(","));
       Serial.print(heartRate, DEC);
 
-      Serial.print(F(", HRvalid="));
+      Serial.print(F(","));
       Serial.print(validHeartRate, DEC);
 
-      Serial.print(F(", SPO2="));
+      Serial.print(F(","));
       Serial.print(spo2, DEC);
 
-      Serial.print(F(", SPO2Valid="));
+      Serial.print(F(","));
       Serial.println(validSPO2, DEC);
     }
 
