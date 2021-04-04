@@ -7,7 +7,16 @@
   >
     <e-series-collection>
       <e-series
-        [dataSource]="series1"
+        [dataSource]="seriesRed"
+        type="Line"
+        xName="x"
+        yName="y"
+        width="2"
+        [animation]="animation1"
+      >
+      </e-series>
+      <e-series
+        [dataSource]="seriesIr"
         type="Line"
         xName="x"
         yName="y"

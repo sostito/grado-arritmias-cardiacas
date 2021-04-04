@@ -1,12 +1,8 @@
-import { ChartModel } from './interfaces/ChartModel';
 import { Task } from './interfaces/TaskModel';
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SignalRService } from './services/signal-r.service';
-
-
-
 
 @Component({
   selector: 'app-root',
@@ -16,16 +12,14 @@ import { SignalRService } from './services/signal-r.service';
 
 export class AppComponent /*implements OnInit*/ {
 
-
   enabledGraph = false;
 
-  /*
-  chartValue: ChartModel[] = [
-    { data: [], label: 'Series A' },
-  ]*/
-
-
-  chartValue: [] = []
+  red = [];
+  ir = [];
+  hr = [];
+  hrValid = [];
+  sPO2 = [];
+  sPO2Valid = [];
 
   tasks: Observable<Task[]>;
 
@@ -34,22 +28,22 @@ export class AppComponent /*implements OnInit*/ {
     this.tasks = this.store.select((tasks: any) => tasks)
 
     this.tasks.subscribe((data: any) => {
-      if (data['tasks'] && data['tasks'].length > 149) {
+      if (data['tasks'] && data['tasks'].length > 199) {
+
 
         let result = data['tasks'].map((data) =>
           JSON.parse(data['state'])
         )
 
-        let result2 = result[149].map((item) => Number(item))
-
-        /*
-        let newCharModel: ChartModel[] = [
-          { data: result2, label: 'Series A' },
-        ]
-        this.chartValue = newCharModel;
-        */
-
-        this.chartValue = result2;
+        result[199].map((item: string) => {
+          let splitItem = item.split(',')
+          this.red.push(splitItem[0])
+          this.ir.push(splitItem[1])
+          this.hr.push(splitItem[2])
+          this.hrValid.push(splitItem[3])
+          this.sPO2.push(splitItem[4])
+          this.sPO2Valid.push(splitItem[5])
+        })
       }
     })
   }
@@ -59,13 +53,9 @@ export class AppComponent /*implements OnInit*/ {
     this.signalRService.addTransferChartDataListener();
   }
 
-  sendHeartBeat() {
+  enabled() {
     this.signalRService.dataChartLine = [];
     this.signalRService.sendHeartBeat();
-  }
-
-  enabled() {
-    this.sendHeartBeat()
     this.enabledGraph = true;
   }
 
