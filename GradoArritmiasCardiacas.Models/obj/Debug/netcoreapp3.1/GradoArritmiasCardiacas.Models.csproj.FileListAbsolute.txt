@@ -1,9 +1,0 @@
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.deps.json
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.dll
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\bin\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.pdb
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.csprojAssemblyReference.cache
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.AssemblyInfoInputs.cache
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.AssemblyInfo.cs
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.csproj.CoreCompileInputs.cache
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.dll
-C:\Desarrollo\grado-arritmias-cardiacas\GradoArritmiasCardiacas.Models\obj\Debug\netcoreapp3.1\GradoArritmiasCardiacas.Models.pdb
