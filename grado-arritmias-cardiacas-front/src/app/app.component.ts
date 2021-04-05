@@ -20,6 +20,8 @@ export class AppComponent /*implements OnInit*/ {
   hrValid = [];
   sPO2 = [];
   sPO2Valid = [];
+  visibleHR = '-';
+  visibleSPO2 = '-';
 
   tasks: Observable<Task[]>;
 
@@ -29,8 +31,6 @@ export class AppComponent /*implements OnInit*/ {
 
     this.tasks.subscribe((data: any) => {
       if (data['tasks'] && data['tasks'].length > 199) {
-
-
         let result = data['tasks'].map((data) =>
           JSON.parse(data['state'])
         )
@@ -43,6 +43,8 @@ export class AppComponent /*implements OnInit*/ {
           this.hrValid.push(splitItem[3])
           this.sPO2.push(splitItem[4])
           this.sPO2Valid.push(splitItem[5])
+          this.visibleHR = splitItem[3] == '1' ? splitItem[2] : this.visibleHR
+          this.visibleSPO2 = splitItem[4]//(splitItem[5] == '1' ? splitItem[4] : this.visibleSPO2)
         })
       }
     })

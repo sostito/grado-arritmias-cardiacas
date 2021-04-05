@@ -19,12 +19,14 @@ import { NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { ResultComponent } from './components/result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineComponent,
-    NavbarComponent
+    NavbarComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
