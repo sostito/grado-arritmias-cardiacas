@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradoArritmiasCardiacas.Api", "grado-arritmias-cardiacas\GradoArritmiasCardiacas.Api.csproj", "{71448A5C-6E82-4B50-B8AD-E0889B2AFCA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradoArritmiasCardiacas.Common", "Common\GradoArritmiasCardiacas.Common.csproj", "{2B7D560B-D164-4417-A6C4-44F8A028CBB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradoArritmiasCardiacas.Common", "GradoArritmiasCardiacas.Common\GradoArritmiasCardiacas.Common.csproj", "{2B7D560B-D164-4417-A6C4-44F8A028CBB6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradoArritmiasCardiacas.Services", "GradoArritmiasCardiacas.Services\GradoArritmiasCardiacas.Services.csproj", "{2E69161C-F960-47F0-9D03-47AE9FB9F942}"
 EndProject

@@ -1,5 +1,4 @@
-﻿using GradoArritmiasCardiacas.Models;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
 namespace GradoArritmiasCardiacas.Services.Hubs

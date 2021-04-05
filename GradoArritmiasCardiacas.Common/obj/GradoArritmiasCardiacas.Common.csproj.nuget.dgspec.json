@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Desarrollo\\grado-arritmias-cardiacas\\Common\\GradoArritmiasCardiacas.Common.csproj": {}
+    "C:\\Desarrollo\\grado-arritmias-cardiacas\\GradoArritmiasCardiacas.Common\\GradoArritmiasCardiacas.Common.csproj": {}
   },
   "projects": {
-    "C:\\Desarrollo\\grado-arritmias-cardiacas\\Common\\GradoArritmiasCardiacas.Common.csproj": {
+    "C:\\Desarrollo\\grado-arritmias-cardiacas\\GradoArritmiasCardiacas.Common\\GradoArritmiasCardiacas.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Desarrollo\\grado-arritmias-cardiacas\\Common\\GradoArritmiasCardiacas.Common.csproj",
+        "projectUniqueName": "C:\\Desarrollo\\grado-arritmias-cardiacas\\GradoArritmiasCardiacas.Common\\GradoArritmiasCardiacas.Common.csproj",
         "projectName": "GradoArritmiasCardiacas.Common",
-        "projectPath": "C:\\Desarrollo\\grado-arritmias-cardiacas\\Common\\GradoArritmiasCardiacas.Common.csproj",
+        "projectPath": "C:\\Desarrollo\\grado-arritmias-cardiacas\\GradoArritmiasCardiacas.Common\\GradoArritmiasCardiacas.Common.csproj",
         "packagesPath": "C:\\Users\\Freddy Rangel\\.nuget\\packages\\",
-        "outputPath": "C:\\Desarrollo\\grado-arritmias-cardiacas\\Common\\obj\\",
+        "outputPath": "C:\\Desarrollo\\grado-arritmias-cardiacas\\GradoArritmiasCardiacas.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
