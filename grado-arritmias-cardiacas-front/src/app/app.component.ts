@@ -44,7 +44,7 @@ export class AppComponent /*implements OnInit*/ {
           this.sPO2.push(splitItem[4])
           this.sPO2Valid.push(splitItem[5])
           this.visibleHR = splitItem[3] == '1' ? splitItem[2] : this.visibleHR
-          this.visibleSPO2 = splitItem[4]//(splitItem[5] == '1' ? splitItem[4] : this.visibleSPO2)
+          this.visibleSPO2 = (splitItem[5] && splitItem[5].includes('1')) ? splitItem[4] : this.visibleSPO2
         })
       }
     })
