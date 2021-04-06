@@ -77,7 +77,7 @@ export class LineComponent {
         clearInterval(this.intervalId)
         this.j = 0;
       }
-    }, 100)
+    }, 50)
 
   }
 
