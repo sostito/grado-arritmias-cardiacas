@@ -20,13 +20,23 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { ResultComponent } from './components/result/result.component';
+import { LoginComponent } from './components/login/login/login.component';
+import { SinginComponent } from './components/login/singin/singin.component';
+import { MainComponent } from './components/main/main.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineComponent,
     NavbarComponent,
-    ResultComponent
+    ResultComponent,
+    LoginComponent,
+    SinginComponent,
+    MainComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +46,6 @@ import { ResultComponent } from './components/result/result.component';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
-
-
     ChartAllModule,
     RangeNavigatorAllModule,
     BrowserModule,
@@ -45,7 +53,10 @@ import { ResultComponent } from './components/result/result.component';
     AccumulationChartAllModule,
     NumericTextBoxModule,
     DatePickerModule,
-    DropDownListAllModule
+    DropDownListAllModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

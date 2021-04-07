@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="card mt-5" style="width: 25rem;">
+            <h1 class="display-1 text-center"><strong>Account</strong></h1>
+            <div class="card-body">
+                <div *ngIf="alert" class="alert mt-2" [ngClass]="alertDanger ? 'alert-danger' : 'alert-success'" role="alert">
+                    {{alertMessage}}
+                </div> 
+                <form [formGroup]="updateForm">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">👨‍🔬</span>
+                        <input type="text" class="form-control" formControlName = "name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">👨‍🔬</span>
+                        <input type="text" class="form-control" formControlName = "lastName" placeholder="Last Name" aria-label="Last Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">⚖️</span>
+                        <input type="number" class="form-control" formControlName = "weight" placeholder="Weight" aria-label="Weight" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">📏</span>
+                        <input type="number" class="form-control" formControlName = "height" placeholder="Height" aria-label="Height" aria-describedby="basic-addon1">
+                    </div>
+                </form>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="button" (click)="Update()" [disabled]="updateLoader">Update</button>
+                </div> 
+            </div>
+          </div>
+    </div>
+</div>
