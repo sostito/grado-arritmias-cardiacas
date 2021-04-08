@@ -26,6 +26,7 @@ import { MainComponent } from './components/main/main.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './components/account/account.component';
+import { StillLineComponent } from './components/graphics/still-line/still-line.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AccountComponent } from './components/account/account.component';
     LoginComponent,
     SinginComponent,
     MainComponent,
-    AccountComponent
+    AccountComponent,
+    StillLineComponent
   ],
   imports: [
     BrowserModule,

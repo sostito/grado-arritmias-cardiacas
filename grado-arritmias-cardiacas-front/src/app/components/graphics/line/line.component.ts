@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Task } from './../../../interfaces/TaskModel';
 import { Component, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -48,7 +49,7 @@ export class LineComponent {
   };
 
 
-  constructor() {
+  constructor(private _http: HttpClient) {
     for (; this.i < 100; this.i++) {
       if (Math.random() > 0.5) {
         if (this.value < 25) {
@@ -75,10 +76,30 @@ export class LineComponent {
         args.chart.refresh();
       if (this.j > 199) {
         clearInterval(this.intervalId)
+        this.saveHistory();
         this.j = 0;
       }
     }, 50)
+  }
 
+  saveHistory() {
+    let body = {
+      userName: localStorage.getItem('userLoged'),
+      data: {
+        red: JSON.stringify(this.red),
+        ir: JSON.stringify(this.ir),
+        hr: JSON.stringify(this.hr),
+        SPO2: JSON.stringify(this.SPO2)
+      }
+    }
+
+    this._http.post('https://localhost:44384/api/History/SaveHistory', body )
+      .subscribe(response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error);
+      })
   }
 
 }
