@@ -85,12 +85,7 @@ export class LineComponent {
   saveHistory() {
     let body = {
       userName: localStorage.getItem('userLoged'),
-      data: {
-        red: JSON.stringify(this.red),
-        ir: JSON.stringify(this.ir),
-        hr: JSON.stringify(this.hr),
-        SPO2: JSON.stringify(this.SPO2)
-      }
+      data: `${JSON.stringify(this.red)}*${JSON.stringify(this.ir)}*${JSON.stringify(this.hr)}*${JSON.stringify(this.SPO2)}`
     }
 
     this._http.post('https://localhost:44384/api/History/SaveHistory', body )

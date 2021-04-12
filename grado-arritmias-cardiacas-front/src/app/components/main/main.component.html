@@ -1,8 +1,8 @@
-
-<div class="row">
+<div class="fadeIn fast">
+  <div class="row">
     <div class="col-1"></div>
     <div class="col-10 pt-3">
-    <app-line
+      <app-line
         *ngIf="enabledGraph"
         [ir]="ir"
         [red]="red"
@@ -10,22 +10,21 @@
         [hrValid]="hrValid"
         [SPO2]="sPO2"
         [SPO2Valid]="sPO2Valid"
-    ></app-line>
+        class="fadeIn fast"
+      ></app-line>
 
-    <div *ngIf="!enabledGraph">
+      <div *ngIf="!enabledGraph">
         <img
-        style="border: solid 1px"
-        src="../assets/images/imagen-grafica-desenfoque.png"
-        alt="Gráfica desenfocada"
+          style="border: solid 1px"
+          src="../assets/images/imagen-grafica-desenfoque.png"
+          alt="Gráfica desenfocada"
         />
+      </div>
     </div>
-    </div>
-</div>
-<button class="btn btn-primary mt-3" (click)="enabled()">
+  </div>
+  <button class="btn btn-primary mt-3" (click)="enabled()">
     Realizar lectura
-</button>
-<hr>
-<app-result 
-    [visibleHR]="visibleHR"
-    [visibleSPO2]="visibleSPO2">
-</app-result>
+  </button>
+  <hr />
+  <app-result [visibleHR]="visibleHR" [visibleSPO2]="visibleSPO2"> </app-result>
+</div>
