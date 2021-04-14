@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ChartTheme, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Browser } from 'selenium-webdriver';
 
@@ -11,10 +11,31 @@ import { Browser } from 'selenium-webdriver';
 export class HistoryComponent implements OnInit {
 
   // custom code end
-  public title: string = 'Gráfica Red e Ir';
   showChart = false;
   maxData = 50;
   isMobile = false;
+
+  @Output() title: string = 'Gráfica Red e Ir';
+  //Initializing Primary X Axis
+  @Output() primaryXAxis: Object = {
+  };
+  //Initializing Primary Y Axis
+  @Output() primaryYAxis: Object = {
+  };
+  @Output() chartArea: Object = {
+      border: {
+          width: 0
+      }
+  };
+  @Output() width: string =  '100%';
+  @Output() marker: Object = {
+      visible: true,
+      height: 10,
+      width: 10
+  };
+  @Output() tooltip: Object = {
+      enable: true
+  };
 
   constructor(private _http: HttpClient) {
 
@@ -33,30 +54,9 @@ export class HistoryComponent implements OnInit {
 
   public data: Object[] = [];
   public data2: Object[] = [];
-  public originalDataRed = []
-  public originalDataIr = []
+  @Output() originalDataRed = []
+  @Output() originalDataIr = []
   historyData;
-
-    //Initializing Primary X Axis
-    public primaryXAxis: Object = {
-    };
-    //Initializing Primary Y Axis
-    public primaryYAxis: Object = {
-    };
-    public chartArea: Object = {
-        border: {
-            width: 0
-        }
-    };
-    public width: string =  '100%';
-    public marker: Object = {
-        visible: true,
-        height: 10,
-        width: 10
-    };
-    public tooltip: Object = {
-        enable: true
-    };
     // custom code start
     public load(args: ILoadedEventArgs): void {
         let selectedTheme: string = location.hash.split('/')[1];

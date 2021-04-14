@@ -15,50 +15,24 @@
     - {{ item.key }}
   </p>
 
-  <div class="control-section animated fadeIn fast" *ngIf="showChart">
-    <div align="center">
-      <ejs-chart
-        style="display: block"
-        align="center"
-        id="chartcontainer"
+  <div class="row" *ngIf="showChart">
+    <div class="col-10 animated fadeIn fast">
+      <app-still-line
+        [data]="data"
+        [data2]="data2"
         [title]="title"
         [primaryXAxis]="primaryXAxis"
         [primaryYAxis]="primaryYAxis"
-        [tooltip]="tooltip"
-        (load)="load($event)"
         [chartArea]="chartArea"
         [width]="width"
-      >
-        <e-series-collection>
-          <e-series
-            [dataSource]="data"
-            type="Line"
-            xName="x"
-            yName="y"
-            name="Red"
-            width="2"
-            [marker]="marker"
-          >
-          </e-series>
-          <e-series
-            [dataSource]="data2"
-            type="Line"
-            xName="x"
-            yName="y"
-            name="Ir"
-            width="2"
-            [marker]="marker"
-          >
-          </e-series>
-        </e-series-collection>
-      </ejs-chart>
+        [marker]="marker"
+        [tooltip]="tooltip"
+        [originalDataRed]="originalDataRed"
+        [originalDataIr]="originalDataIr"
+      ></app-still-line>
     </div>
-    <button
-      class="btn btn-primary"
-      (click)="showNextData()"
-      [disabled]="maxData == 200"
-    >
-      Mostrar siguientes datos
-    </button>
+    <div class="col-2 animated fadeIn fast">
+      <app-information></app-information>
+    </div>
   </div>
 </div>
