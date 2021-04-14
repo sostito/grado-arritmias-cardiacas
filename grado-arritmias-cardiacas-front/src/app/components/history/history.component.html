@@ -16,7 +16,7 @@
   </p>
 
   <div class="row" *ngIf="showChart">
-    <div class="col-10 animated fadeIn fast">
+    <div class="col-lg-10 col-sm-12 animated fadeIn fast">
       <app-still-line
         [data]="data"
         [data2]="data2"
@@ -29,9 +29,15 @@
         [maxData]="maxData"
       ></app-still-line>
     </div>
-    <div class="col-2 animated fadeIn fast mt-5">
-      <app-information [information]="hrMessage"></app-information>
-      <app-information [information]="SPO2Message"></app-information>
+    <div class="col-lg-2 col-sm-12 animated fadeIn fast mt-5">
+      <app-information
+        [information]="hrMessage"
+        [toolTip]="hrTooltip"
+      ></app-information>
+      <app-information
+        [information]="SPO2Message"
+        [toolTip]="SPO2Tooltip"
+      ></app-information>
     </div>
   </div>
 </div>

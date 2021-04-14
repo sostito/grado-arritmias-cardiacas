@@ -17,8 +17,10 @@ export class HistoryComponent {
   data2: Object[] = [];
   SPO2: number;
   SPO2Message: string;
+  SPO2Tooltip: string;
   hr: number;
   hrMessage: string;
+  hrTooltip: string;
   originalDataRed = []
   originalDataIr = []
   historyData;
@@ -86,12 +88,14 @@ export class HistoryComponent {
         countx = 1;
         this.SPO2 = Number(item2.replace('"', ''))
         this.SPO2Message = "Su oxígeno en sangre fue de un: " + this.SPO2 + "%"
+        this.SPO2Tooltip = " Los valores inferiores al 90 por ciento se consideran bajos e indican la necesidad de oxígeno suplementario. \n\nPara las personas con afecciones pulmonares crónicas y otros problemas respiratorios, no se aplica el rango de SpO2 'normal' del 95% al ​​100%. Estas personas siempre deben consultar con tu médico para obtener información sobre los niveles de oxígeno aceptables para tu estado de salud único. "
       }
 
       if (currentIndex == 3) {
         countx = 1;
         this.hr = Number(item2.replace('"', ''))
         this.hrMessage = "Su ritmo cardíaco fue de: " + this.hr
+        this.hrTooltip = "Una frecuencia cardíaca en reposo normal para los adultos oscila entre 60 y 100 latidos por minuto.\n\nGeneralmente, una frecuencia cardíaca más baja en reposo implica una función cardíaca más eficiente y un mejor estado físico cardiovascular. Por ejemplo, un atleta bien entrenado puede tener una frecuencia cardíaca en reposo normal cercana a 40 latidos por minuto."
       }
     })
 
