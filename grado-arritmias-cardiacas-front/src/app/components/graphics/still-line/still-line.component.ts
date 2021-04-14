@@ -1,12 +1,13 @@
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import * as EventEmitter from 'node:events';
 
 @Component({
   selector: 'app-still-line',
   templateUrl: './still-line.component.html',
   styleUrls: ['./still-line.component.css']
 })
-export class StillLineComponent implements OnInit {
+export class StillLineComponent {
 
   @Input() data: Object[] = [];
   @Input() data2: Object[] = [];
@@ -16,17 +17,16 @@ export class StillLineComponent implements OnInit {
   @Input() chartArea: Object = {};
   @Input() width: string =  '100%';
   @Input() marker: Object = {};
-  @Input() tooltip: Object = {};
   @Input() originalDataRed = []
   @Input() originalDataIr = []
+  @Input() tooltip: Object = {
+      enable: true
+  };
 
-  maxData = 50;
+  @Input() maxData;
   isMobile = false;
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
 
   load(args: ILoadedEventArgs): void {
       let selectedTheme: string = location.hash.split('/')[1];

@@ -21,18 +21,17 @@
         [data]="data"
         [data2]="data2"
         [title]="title"
-        [primaryXAxis]="primaryXAxis"
-        [primaryYAxis]="primaryYAxis"
         [chartArea]="chartArea"
         [width]="width"
         [marker]="marker"
-        [tooltip]="tooltip"
         [originalDataRed]="originalDataRed"
         [originalDataIr]="originalDataIr"
+        [maxData]="maxData"
       ></app-still-line>
     </div>
-    <div class="col-2 animated fadeIn fast">
-      <app-information></app-information>
+    <div class="col-2 animated fadeIn fast mt-5">
+      <app-information [information]="hrMessage"></app-information>
+      <app-information [information]="SPO2Message"></app-information>
     </div>
   </div>
 </div>

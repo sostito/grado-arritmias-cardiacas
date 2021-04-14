@@ -30,8 +30,10 @@ export class LineComponent {
   @Input() ir: [] = [];
   @Input() hr: [] = [];
   @Input() hrValid: [] = [];
+  @Input() visibleHR: [] = [];
   @Input() SPO2: [] = [];
   @Input() SPO2Valid: [] = [];
+  @Input() visibleSPO2: [] = [];
   tasks: Observable<Task[]>;
 
   public lineChartOptions = {
@@ -85,12 +87,11 @@ export class LineComponent {
   saveHistory() {
     let body = {
       userName: localStorage.getItem('userLoged'),
-      data: `${JSON.stringify(this.red)}*${JSON.stringify(this.ir)}*${JSON.stringify(this.hr)}*${JSON.stringify(this.SPO2)}`
+      data: `${JSON.stringify(this.red)}*${JSON.stringify(this.ir)}*${JSON.stringify(this.visibleHR)}*${JSON.stringify(this.visibleSPO2)}`
     }
 
     this._http.post('https://localhost:44384/api/History/SaveHistory', body )
       .subscribe(response => {
-        console.log(response)
       },
       error => {
         console.log(error);
