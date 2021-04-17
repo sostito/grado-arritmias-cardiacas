@@ -28,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './components/account/account.component';
 import { StillLineComponent } from './components/graphics/still-line/still-line.component';
 import { HistoryComponent } from './components/history/history.component';
+import { InformationComponent } from './components/shared/information/information.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HistoryComponent } from './components/history/history.component';
     MainComponent,
     AccountComponent,
     StillLineComponent,
-    HistoryComponent
+    HistoryComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,
