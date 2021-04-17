@@ -11,11 +11,14 @@ export class ResultComponent implements OnInit {
 
   @Input() visibleHR: string = '-';
   @Input() visibleSPO2: string = '-';
+  @Input() enableStatusBar: string = '-';
+  @Input() statusBarLevel: number = 0;
   tasks: Observable<Task[]>;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.visibleHR);
   }
 
 }

@@ -55,8 +55,8 @@ namespace GradoArritmiasCardiacas.Services.DataBase
          {
             using (MySqlConnection connection = await GetConnectionAsync(connectionString))
             {
-               var query = $"INSERT INTO user (userName, name, lastName, weight, height, password) " +
-                   $"VALUES ('{singinRequest.userName}','{singinRequest.Name}','{singinRequest.lastName}',{singinRequest.weight},{singinRequest.height},'{singinRequest.password}')";
+               var query = $"INSERT INTO user (userName, name, lastName, weight, height, password, age, gender) " +
+                   $"VALUES ('{singinRequest.userName}','{singinRequest.Name}','{singinRequest.lastName}',{singinRequest.weight},{singinRequest.height},'{singinRequest.password}', {singinRequest.age}, '{singinRequest.gender}')";
                using var command = new MySqlCommand(query, connection);
                using var reader = await command.ExecuteReaderAsync();
 
@@ -90,6 +90,8 @@ namespace GradoArritmiasCardiacas.Services.DataBase
                   result.lastName = reader.GetValue(2).ToString();
                   result.weight = Convert.ToDecimal(reader.GetValue(3));
                   result.height = Convert.ToDecimal(reader.GetValue(4).ToString());
+                  result.age = Convert.ToInt32(reader.GetValue(6).ToString());
+                  result.gender = reader.GetValue(7).ToString();
                }
             }
 
@@ -110,7 +112,7 @@ namespace GradoArritmiasCardiacas.Services.DataBase
             using (MySqlConnection connection = await GetConnectionAsync(connectionString))
             {
                var query = $"UPDATE user " +
-                   $"SET name = '{update.Name}', lastName = '{update.lastName}', weight = {update.weight}, height = {update.height} " +
+                   $"SET name = '{update.Name}', lastName = '{update.lastName}', weight = {update.weight}, height = {update.height}, age = {update.age}, gender = '{update.gender}' " +
                    $"WHERE userName = '{update.userName}'";
                using var command = new MySqlCommand(query, connection);
                using var reader = await command.ExecuteReaderAsync();

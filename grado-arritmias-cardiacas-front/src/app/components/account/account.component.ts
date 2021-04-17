@@ -26,7 +26,9 @@ export class AccountComponent implements OnInit {
       name: new FormControl(''),
       lastName: new FormControl(''),
       weight: new FormControl(),
-      height: new FormControl()
+      height: new FormControl(),
+      age: new FormControl(),
+      gender: new FormControl('m')
     });
 
     this.GetUser();
@@ -42,6 +44,8 @@ export class AccountComponent implements OnInit {
           this.updateForm.controls.lastName.setValue(data.lastName); 
           this.updateForm.controls.weight.setValue(data.weight); 
           this.updateForm.controls.height.setValue(data.height);
+          this.updateForm.controls.age.setValue(data.age);
+          this.updateForm.controls.gender.setValue(data.gender);
         }
       }, error => {
         //this._router.navigate(['login']);
@@ -54,7 +58,6 @@ export class AccountComponent implements OnInit {
     this.updateLoader = true;
     this._http.post('https://localhost:44384/api/User/UpdateProfile', this.updateForm.value)
       .subscribe(response => {
-        this.updateForm.reset();
         this.alertDanger = false;
         this.alert = true;
         this.alertMessage = 'Usuario actualizado correctamente';

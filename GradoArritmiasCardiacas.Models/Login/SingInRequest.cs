@@ -10,5 +10,7 @@ namespace GradoArritmiasCardiacas.Models.Login
         public Decimal weight { get; set; }
         public Decimal height { get; set; }
         public String password { get; set; }
+        public Int32 age { get; set; }
+        public String gender { get; set; }
     }
 }

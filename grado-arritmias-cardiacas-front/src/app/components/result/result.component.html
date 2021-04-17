@@ -1,16 +1,25 @@
 <div class="mt-4 row container">
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="row d-flex justify-content-center">
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <!--<h1>Heart Rate</h1>-->
-            <div id="heart">
-            <img class="bottom" src="../assets/images/heart-rate.png" width="150px">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <!--<h1>Heart Rate</h1>-->
+                <div id="heart">
+                <img class="bottom" src="../assets/images/heart-rate.png" width="150px">
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 mt-3">
-            <h1 class="display-1">{{visibleHR}}</h1>
-            <p class=""><strong>BPM</strong></p>
-        </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 mt-3">
+                <h1 class="display-1">{{visibleHR}}</h1>
+                <p class=""><strong>BPM</strong></p>
+            </div>
+            <div *ngIf="enableStatusBar" class="mb-5">
+                <div  class="progress">
+                    <div *ngIf="statusBarLevel >= 0" class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div *ngIf="statusBarLevel >= 1" class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div *ngIf="statusBarLevel >= 2" class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div *ngIf="statusBarLevel >= 3" class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <!--<h3 style="color: red" *ngIf="enableStatusBar" class="mt-1">Su ritmo cardiaco es <strong>Alto</strong></h3>-->
+            </div>
         </div>
     </div>
     

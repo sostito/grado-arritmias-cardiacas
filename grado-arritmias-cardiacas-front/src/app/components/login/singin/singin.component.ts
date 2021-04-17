@@ -25,7 +25,9 @@ export class SinginComponent implements OnInit {
       lastName: new FormControl(''),
       weight: new FormControl(),
       height: new FormControl(),
-      password: new FormControl('')
+      password: new FormControl(''),
+      age: new FormControl(''),
+      gender: new FormControl('')
     });
   }
 
