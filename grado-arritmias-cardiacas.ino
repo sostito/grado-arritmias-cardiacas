@@ -1,9 +1,24 @@
 #include <Wire.h>
 #include "MAX30105.h"
-#include "heartRate.h"
 #include "spo2_algorithm.h"
 
 MAX30105 particleSensor;
+
+// #if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)
+//Arduino Uno doesn't have enough SRAM to store 100 samples of IR led data and red led data in 32-bit format
+//To solve this problem, 16-bit MSB of the sampled data will be truncated. Samples become 16-bit data.
+uint16_t irBuffer[100]; //infrared LED sensor data
+uint16_t redBuffer[100];  //red LED sensor data
+//#else
+//uint32_t irBuffer[100]; //infrared LED sensor data
+//uint32_t redBuffer[100];  //red LED sensor data
+//#endif
+
+int32_t bufferLength; //data length
+int32_t spo2; //SPO2 value
+int8_t validSPO2; //indicator to show if the SPO2 calculation is valid
+int32_t heartRate; //heart rate value
+int8_t validHeartRate; //indicator to show if the heart rate calculation is valid
 
 void setup()
 {
@@ -18,7 +33,7 @@ void setup()
   }
 
   //Setup to sense a nice looking saw tooth on the plotter
-  byte ledBrightness = 60; //Options: 0=Off to 255=50mA -0x1
+  byte ledBrightness = 6+0; //Options: 0=Off to 255=50mA -0x1
   byte sampleAverage = 4; //Options: 1, 2, 4, 8, 16, 32 -8
   byte ledMode = 2; //Options: 1 = Red only, 2 = Red + IR, 3 = Red + IR + Green -3
   int sampleRate = 100; //Options: 50, 100, 200, 400, 800, 1000, 1600, 3200
@@ -31,15 +46,6 @@ void setup()
 
 void loop()
 {
-
-  uint16_t irBuffer[100]; //infrared LED sensor data
-  uint16_t redBuffer[100];  //red LED sensor data
-  int32_t bufferLength; //data length
-  int32_t spo2; //SPO2 value
-  int8_t validSPO2; //indicator to show if the SPO2 calculation is valid
-  int32_t heartRate; //heart rate value
-  int8_t validHeartRate; //indicator to show if the heart rate calculation is valid
-
   bufferLength = 100; //buffer length of 100 stores 4 seconds of samples running at 25sps
 
   //read the first 100 samples, and determine the signal range

@@ -23,7 +23,7 @@ export class MainComponent /*implements OnInit*/ {
   hrValid = [];
   sPO2 = [];
   sPO2Valid = [];
-  visibleHR = '69';
+  visibleHR = '-';
   visibleSPO2 = '-';
   enableStatusBar: boolean = false;
   statusBarLevel: number = 1;
@@ -192,9 +192,9 @@ export class MainComponent /*implements OnInit*/ {
   }
 
   enabled() {
-    /*this.signalRService.dataChartLine = [];
+    this.signalRService.dataChartLine = [];
     this.signalRService.sendHeartBeat();
-    this.enabledGraph = true;*/
+    this.enabledGraph = true;
     this.calculateStats(Number(this.visibleHR));
   }
 
