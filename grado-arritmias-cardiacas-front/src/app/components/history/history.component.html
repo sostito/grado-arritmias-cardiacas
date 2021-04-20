@@ -15,28 +15,28 @@
     - {{ item.key }}
   </p>
 
-  <div class="row" *ngIf="showChart">
-    <div class="col-lg-10 col-sm-12 animated fadeIn fast">
-      <app-still-line
-        [data]="data"
-        [data2]="data2"
-        [title]="title"
-        [chartArea]="chartArea"
-        [width]="width"
-        [marker]="marker"
-        [originalDataRed]="originalDataRed"
-        [originalDataIr]="originalDataIr"
-        [maxData]="maxData"
-      ></app-still-line>
-    </div>
-    <div class="col-lg-2 col-sm-12 animated fadeIn fast mt-5">
+  <div class="row mt-5" *ngIf="showInformation">
+    <div class="col-lg-6 col-sm-12 animated fadeIn fast">
       <app-information
         [information]="hrMessage"
         [toolTip]="hrTooltip"
+        [toolTipClass]="hrTooltipClass"
       ></app-information>
+      <app-information
+        [information]="hrTooltip"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
+    </div>
+    <div class="col-lg-6 col-sm-12 animated fadeIn fast">
       <app-information
         [information]="SPO2Message"
         [toolTip]="SPO2Tooltip"
+        [toolTipClass]="SPO2TooltipClass"
+      ></app-information>
+
+      <app-information
+        [information]="SPO2Tooltip"
+        [toolTipClass]="SPO2TooltipClass"
       ></app-information>
     </div>
   </div>

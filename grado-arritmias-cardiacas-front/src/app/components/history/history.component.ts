@@ -9,18 +9,14 @@ import * as EventEmitter from 'node:events';
 export class HistoryComponent {
 
   // custom code end
-  showChart = false;
-  maxData = 50;
   isMobile = false;
-
-  data: Object[] = [];
-  data2: Object[] = [];
-  SPO2: number;
+  showInformation = false;
   SPO2Message: string;
   SPO2Tooltip: string;
-  hr: number;
+  SPO2TooltipClass: string;
   hrMessage: string;
   hrTooltip: string;
+  hrTooltipClass: string;
   originalDataRed = []
   originalDataIr = []
   historyData;
@@ -59,49 +55,39 @@ export class HistoryComponent {
   }
 
   getDataChart(keyDay) {
-    let countx = 1;
-    this.originalDataRed = [];
-    this.originalDataIr = [];
-    this.showChart = false;
-    this.maxData = 50;
-
+    let hr;
+    let spo2;
     this.historyData[keyDay].split('*').map((item2, currentIndex) => {
-      item2 = item2.replace(']', '').replace('[', '').replace('"', '')
-
-      // 0=red; 1=ir; 2=hr; 3=SPO2
       if (currentIndex == 0) {
-        item2.split('","').map((item3) => {
-          countx++;
-          this.originalDataRed.push({ x: countx, y: Number(item3) })
-        })
+        hr = item2;
+        this.hrMessage = "Su ritmo cardíaco fue de: " + item2
+        this.hrTooltip = "Una frecuencia cardíaca en reposo normal para los adultos oscila entre 60 y 100 latidos por minuto.\n\nGeneralmente, una frecuencia cardíaca más baja en reposo implica una función cardíaca más eficiente y un mejor estado físico cardiovascular. Por ejemplo, un atleta bien entrenado puede tener una frecuencia cardíaca en reposo normal cercana a 40 latidos por minuto."
       }
 
       if (currentIndex == 1) {
-        countx = 1;
-        item2.split('","').map((item3) => {
-          countx++;
-          this.originalDataIr.push({ x: countx, y: Number(item3) })
-        })
-      }
-
-      if (currentIndex == 2) {
-        countx = 1;
-        this.SPO2 = Number(item2.replace('"', ''))
-        this.SPO2Message = "Su oxígeno en sangre fue de un: " + this.SPO2 + "%"
+        spo2 = item2;
+        this.SPO2Message = "Su oxígeno en sangre fue de un: " + item2 + "%"
         this.SPO2Tooltip = " Los valores inferiores al 90 por ciento se consideran bajos e indican la necesidad de oxígeno suplementario. \n\nPara las personas con afecciones pulmonares crónicas y otros problemas respiratorios, no se aplica el rango de SpO2 'normal' del 95% al ​​100%. Estas personas siempre deben consultar con tu médico para obtener información sobre los niveles de oxígeno aceptables para tu estado de salud único. "
       }
-
-      if (currentIndex == 3) {
-        countx = 1;
-        this.hr = Number(item2.replace('"', ''))
-        this.hrMessage = "Su ritmo cardíaco fue de: " + this.hr
-        this.hrTooltip = "Una frecuencia cardíaca en reposo normal para los adultos oscila entre 60 y 100 latidos por minuto.\n\nGeneralmente, una frecuencia cardíaca más baja en reposo implica una función cardíaca más eficiente y un mejor estado físico cardiovascular. Por ejemplo, un atleta bien entrenado puede tener una frecuencia cardíaca en reposo normal cercana a 40 latidos por minuto."
-      }
     })
+    this.calculateUser(hr, spo2)
+    this.showInformation = true;
+  }
 
-    this.data = this.isMobile ? this.originalDataRed.slice(0,15) : this.originalDataRed.slice(0,50)
-    this.data2 = this.isMobile ? this.originalDataIr.slice(0,15) : this.originalDataIr.slice(0,50)
-    this.showChart = true;
+  calculateUser(hr, spo2) {
+    if (hr >= 60 && hr <= 100) {
+      this.hrTooltipClass = "alert alert-success"
+    } else {
+      this.hrTooltipClass = "alert alert-danger"
+    }
+
+    if (spo2 > 95) {
+      this.SPO2TooltipClass = "alert alert-success"
+    } else if(spo2 >= 80 && spo2 < 95) {
+      this.SPO2TooltipClass = "alert alert-warning"
+    } else {
+      this.SPO2TooltipClass = "alert alert-danger"
+    }
   }
 
 }
