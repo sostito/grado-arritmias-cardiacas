@@ -19,9 +19,6 @@ export class LoginComponent implements OnInit {
   constructor(private _http: HttpClient, private _router: Router, private _loginService: LoginService) { }
 
   ngOnInit(): void {
-
-    console.log(localStorage.getItem('userLoged'));
-
     if(localStorage.getItem('userLoged') !== null){
       this._router.navigate(['main']);
     }
@@ -37,7 +34,15 @@ export class LoginComponent implements OnInit {
     this._http.post('https://localhost:44384/api/Login/Login', this.loginForm.value)
       .subscribe(response => {
         this._loginService.LoginEmit(true, this.loginForm.value.userName);
-        this._router.navigate(['main']);
+
+
+        this._http.get('https://localhost:44384/api/User/GetUser/' + this.loginForm.value.userName)
+          .subscribe(response => {
+            localStorage.setItem('dataUser', JSON.stringify(response))
+            this._router.navigate(['main']);
+        })
+
+
       },
       error => {
         this.alert = true;

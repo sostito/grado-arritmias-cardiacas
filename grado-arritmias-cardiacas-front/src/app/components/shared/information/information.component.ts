@@ -8,7 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 export class InformationComponent implements OnInit {
 
   @Input() information: string;
-  @Input() toolTip: string;
   @Input() toolTipClass: string = "alert alert-success";
 
   constructor() { }

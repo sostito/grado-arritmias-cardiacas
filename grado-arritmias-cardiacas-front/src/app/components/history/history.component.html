@@ -18,24 +18,22 @@
   <div class="row mt-5" *ngIf="showInformation">
     <div class="col-lg-6 col-sm-12 animated fadeIn fast">
       <app-information
-        [information]="hrMessage"
-        [toolTip]="hrTooltip"
+        [information]="hrResult"
         [toolTipClass]="hrTooltipClass"
       ></app-information>
       <app-information
-        [information]="hrTooltip"
+        [information]="hrMessage"
         [toolTipClass]="hrTooltipClass"
       ></app-information>
     </div>
     <div class="col-lg-6 col-sm-12 animated fadeIn fast">
       <app-information
-        [information]="SPO2Message"
-        [toolTip]="SPO2Tooltip"
+        [information]="SPO2Result"
         [toolTipClass]="SPO2TooltipClass"
       ></app-information>
 
       <app-information
-        [information]="SPO2Tooltip"
+        [information]="SPO2Message"
         [toolTipClass]="SPO2TooltipClass"
       ></app-information>
     </div>
