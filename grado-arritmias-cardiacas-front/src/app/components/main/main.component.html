@@ -4,8 +4,6 @@
     <div class="col-10 pt-3">
       <app-line
         *ngIf="enabledGraph"
-        [ir]="ir"
-        [red]="red"
         [hr]="hr"
         [hrValid]="hrValid"
         [visibleHR]="visibleHR"
@@ -28,8 +26,11 @@
     Realizar lectura
   </button>
   <hr />
-  <app-result [visibleHR]="visibleHR"
-   [visibleSPO2]="visibleSPO2"
-   [enableStatusBar]="enableStatusBar"
-   [statusBarLevel]="statusBarLevel" > </app-result>
+  <app-result
+    [visibleHR]="visibleHR"
+    [visibleSPO2]="visibleSPO2"
+    [enableStatusBar]="enableStatusBar"
+    [statusBarLevel]="statusBarLevel"
+  >
+  </app-result>
 </div>

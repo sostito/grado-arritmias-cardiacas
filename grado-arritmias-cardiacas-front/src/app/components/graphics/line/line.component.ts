@@ -7,6 +7,7 @@ import {
   ILoadedEventArgs,
   ChartComponent
 } from "@syncfusion/ej2-angular-charts";
+import { NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 
 @Component({
   selector: 'app-line',
@@ -15,25 +16,23 @@ import {
 })
 export class LineComponent {
 
-  public seriesRed: Object[] = [];
-  public seriesIr: Object[] = [];
+  public seriesHr: Object[] = [];
   public value: number = 10;
   public intervalId: any;
   public setTimeoutValue: number;
   i: number = 0;
   j: number = 0;
+  averageHr = 0;
 
   @ViewChild("chart")
   public chart: ChartComponent;
 
-  @Input() red: [] = [];
-  @Input() ir: [] = [];
   @Input() hr: [] = [];
   @Input() hrValid: [] = [];
-  @Input() visibleHR: [] = [];
+  @Input() visibleHR;
   @Input() SPO2: [] = [];
   @Input() SPO2Valid: [] = [];
-  @Input() visibleSPO2: [] = [];
+  @Input() visibleSPO2;
   tasks: Observable<Task[]>;
 
   public lineChartOptions = {
@@ -47,7 +46,7 @@ export class LineComponent {
   //Initializing Primary Y Axis
   public primaryYAxis: Object = {
     minimum: 0,
-    maximum: 80000
+    maximum: 300
   };
 
 
@@ -60,34 +59,43 @@ export class LineComponent {
           this.value -= 2.0;
         }
       }
-      this.seriesRed[this.i] = { x: this.i, y: this.value };
-      this.seriesIr[this.i] = { x: this.i, y: this.value + 1000 };
+      this.seriesHr[this.i] = { x: this.i, y: this.value };
     }
   }
 
 
   public loaded(args: ILoadedEventArgs): void {
     this.intervalId = setTimeout(() => {
-      this.j++;
-      this.i++;
-        this.seriesRed.push({ x: this.i, y: this.red[this.j] });
-        this.seriesIr.push({ x: this.i, y: this.ir[this.j] });
-        this.seriesRed.shift();
-        this.seriesIr.shift();
-        args.chart.series[0].dataSource = this.seriesRed;
-        args.chart.refresh();
+
+
+
+      if ((this.visibleHR != '-')) {
+        this.i++;
+        this.j++;
+        if (this.averageHr != 0) {
+          this.averageHr = (this.averageHr + Number(this.visibleHR)) / 2
+        } else {
+          this.averageHr = Number(this.visibleHR)
+        }
+        this.averageHr = Math.round(this.averageHr)
+      }
+      this.seriesHr.push({ x: this.i, y: this.averageHr });
+      this.seriesHr.shift();
+      args.chart.series[0].dataSource = this.seriesHr;
+      args.chart.refresh();
+
       if (this.j > 199) {
         clearInterval(this.intervalId)
         this.saveHistory();
         this.j = 0;
       }
-    }, 50)
+    }, 150)
   }
 
   saveHistory() {
     let body = {
       userName: localStorage.getItem('userLoged'),
-      data: `${JSON.stringify(this.red)}*${JSON.stringify(this.ir)}*${JSON.stringify(this.visibleHR)}*${JSON.stringify(this.visibleSPO2)}`
+      data: `${JSON.stringify(this.averageHr)}*${JSON.stringify(Number(this.visibleSPO2))}`
     }
 
     this._http.post('https://localhost:44384/api/History/SaveHistory', body )

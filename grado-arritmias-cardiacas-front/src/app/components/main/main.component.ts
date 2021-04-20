@@ -45,14 +45,12 @@ export class MainComponent /*implements OnInit*/ {
 
         let dataToProcess = result[this.currentIndex][this.currentIndex - 1]
         let splitItem = dataToProcess.split(',')
-        this.red.push(splitItem[0])
-        this.ir.push(splitItem[1])
-        this.hr.push(splitItem[2])
-        this.hrValid.push(splitItem[3])
-        this.sPO2.push(splitItem[4])
-        this.sPO2Valid.push(splitItem[5])
-        this.visibleHR = splitItem[3] == '1' ? splitItem[2] : this.visibleHR
-        this.visibleSPO2 = (splitItem[5] && splitItem[5].includes('1')) ? splitItem[4] : this.visibleSPO2
+        this.hr.push(splitItem[0])
+        this.hrValid.push(splitItem[1])
+        this.sPO2.push(splitItem[2])
+        this.sPO2Valid.push(splitItem[3])
+        this.visibleHR = splitItem[1] == '1' ? splitItem[0] : this.visibleHR
+        this.visibleSPO2 = (splitItem[3] && splitItem[3].includes('1')) ? splitItem[2] : this.visibleSPO2
         this.currentIndex++;
         this.calculateStats(Number(this.visibleHR));
       }
@@ -60,7 +58,7 @@ export class MainComponent /*implements OnInit*/ {
   }
 
   ngOnInit() {
-    
+
     if(localStorage.getItem('userLoged') == null){
       this._router.navigate(['login']);
     }
@@ -185,7 +183,7 @@ export class MainComponent /*implements OnInit*/ {
         }
       }
     }else{
-      console.log('no');
+      //console.log('no');
       //nothig to do
     }
     this.enableStatusBar = true;
@@ -203,7 +201,6 @@ export class MainComponent /*implements OnInit*/ {
       .subscribe((data: User) => {
         if(data !== null){
           this.userData = data;
-          console.log(this.userData);
         }
       }, error => {
         //this._router.navigate(['login']);
