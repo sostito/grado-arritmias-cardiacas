@@ -11,6 +11,7 @@
         [SPO2Valid]="sPO2Valid"
         [visibleSPO2]="visibleSPO2"
         class="fadeIn fast"
+        (lastHRValue)="UpdateHRValue($event)"
       ></app-line>
 
       <div *ngIf="!enabledGraph">
@@ -27,7 +28,7 @@
   </button>
   <hr />
   <app-result
-    [visibleHR]="visibleHR"
+    [lastHRValue]="lastHRValue"
     [visibleSPO2]="visibleSPO2"
     [enableStatusBar]="enableStatusBar"
     [statusBarLevel]="statusBarLevel"

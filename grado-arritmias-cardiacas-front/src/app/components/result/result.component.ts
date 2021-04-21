@@ -9,7 +9,7 @@ import { Task } from 'src/app/interfaces/TaskModel';
 })
 export class ResultComponent implements OnInit {
 
-  @Input() visibleHR: string = '-';
+  @Input() lastHRValue: string = '-';
   @Input() visibleSPO2: string = '-';
   @Input() enableStatusBar: string = '-';
   @Input() statusBarLevel: number = 0;
@@ -18,7 +18,7 @@ export class ResultComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.visibleHR);
+    console.log(this.lastHRValue);
   }
 
 }

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { threadId } from 'node:worker_threads';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/interfaces/TaskModel';
 import { User } from 'src/app/interfaces/UserModel.interface';
@@ -21,13 +20,14 @@ export class MainComponent /*implements OnInit*/ {
   ir = [];
   hr = [];
   hrValid = [];
-  sPO2 = [];
+  sPO2: number[] = [];
   sPO2Valid = [];
   visibleHR = '-';
   visibleSPO2 = '-';
   enableStatusBar: boolean = false;
   statusBarLevel: number = 1;
   userData: User;
+  lastHRValue: String = '-';
 
   currentIndex = 1;
 
@@ -42,17 +42,15 @@ export class MainComponent /*implements OnInit*/ {
         let result = data['tasks'].map((data) =>
           JSON.parse(data['state'])
         )
-
         let dataToProcess = result[this.currentIndex][this.currentIndex - 1]
         let splitItem = dataToProcess.split(',')
         this.hr.push(splitItem[0])
         this.hrValid.push(splitItem[1])
-        this.sPO2.push(splitItem[2])
+        this.sPO2.push(Number(splitItem[2]))
         this.sPO2Valid.push(splitItem[3])
         this.visibleHR = splitItem[1] == '1' ? splitItem[0] : this.visibleHR
-        this.visibleSPO2 = (splitItem[3] && splitItem[3].includes('1')) ? splitItem[2] : this.visibleSPO2
+        //this.visibleSPO2 = (splitItem[3] && splitItem[3].includes('1')) ? splitItem[2] : this.visibleSPO2
         this.currentIndex++;
-        this.calculateStats(Number(this.visibleHR));
       }
     })
   }
@@ -205,6 +203,13 @@ export class MainComponent /*implements OnInit*/ {
       }, error => {
         //this._router.navigate(['login']);
       })
+  }
+
+  UpdateHRValue(hrValue){
+    console.log(this.sPO2);
+    this.visibleSPO2 = String(this.sPO2.reduce((op, item) => op = op > item ? op : item, 0));
+    this.lastHRValue = hrValue;
+    this.calculateStats(hrValue);
   }
 
 }

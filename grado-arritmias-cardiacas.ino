@@ -16,7 +16,7 @@ void setup()
     Serial.println("MAX30102 was not found");
   }
 
-  particleSensor.sensorConfiguration(50, SAMPLEAVG_1, \
+  particleSensor.sensorConfiguration(50, SAMPLEAVG_2, \
                         MODE_MULTILED, SAMPLERATE_100, \
                         PULSEWIDTH_411, ADCRANGE_16384);
 }
@@ -32,4 +32,3 @@ void loop(){
     Serial.print(F(","));
     Serial.println(SPO2Valid, DEC);
 } 
-

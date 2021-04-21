@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Task } from './../../../interfaces/TaskModel';
 import { Component, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Output, EventEmitter } from '@angular/core';
 
 import {
   ILoadedEventArgs,
@@ -33,6 +34,7 @@ export class LineComponent {
   @Input() SPO2Valid: [] = [];
   @Input() visibleSPO2;
   tasks: Observable<Task[]>;
+  @Output() lastHRValue = new EventEmitter<string>();
 
   public lineChartOptions = {
     responsive: true,
@@ -90,14 +92,14 @@ export class LineComponent {
           this.averageHr = Number(this.visibleHR)
         }
         this.averageHr = Math.round(this.averageHr)
-        console.log(this.averageHr)
+        //console.log(this.averageHr)
       }
       this.seriesHr.push({ x: this.i, y: this.averageHr });
       this.seriesHr.shift();
       args.chart.series[0].dataSource = this.seriesHr;
       args.chart.refresh();
 
-      if (this.j > 199) {
+      if (this.j > 60) {
         clearInterval(this.intervalId)
         //this.saveHistory();
         this.j = 0;
@@ -111,6 +113,23 @@ export class LineComponent {
     console.log('segundo rango: ' + this.segundoRango.length + ' - suma:  ' + SegundaSuma + ' - Dividido: ' + this.segundoRango.length + ' - igual: ' + SegundaSuma / this.segundoRango.length)
     console.log('tercer rango: ' + this.tercerRango.length + ' - suma:  ' + terceraSuma + ' - Dividido: ' + this.tercerRango.length + ' - igual: ' + terceraSuma / this.tercerRango.length)
     console.log('total: ' + (primeraSuma + SegundaSuma + terceraSuma) / (this.primerRango.length + this.segundoRango.length + this.tercerRango.length))
+
+    let avgHr: number;
+
+    if(primeraSuma.length > SegundaSuma.length && primeraSuma.length > terceraSuma.length ){
+      avgHr = Math.floor(primeraSuma / this.primerRango.length);
+    }else if(SegundaSuma.length > primeraSuma.length && SegundaSuma.length > terceraSuma.length){
+      avgHr = Math.floor(SegundaSuma / this.segundoRango.length);
+    }else if(terceraSuma.length > primeraSuma.length && terceraSuma.length > SegundaSuma.length){
+      avgHr = Math.floor(terceraSuma / this.tercerRango.length);
+    }else{
+      avgHr = Math.floor(primeraSuma / this.primerRango.length);
+    }
+
+    if(!isNaN(avgHr)){
+      console.log('WTF: ', avgHr);
+      this.lastHRValue.emit(String(avgHr));
+    }
   }
 
   saveHistory() {
