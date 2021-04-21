@@ -1,6 +1,5 @@
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-import { Component, Input, Output } from '@angular/core';
-import * as EventEmitter from 'node:events';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-still-line',
@@ -17,12 +16,13 @@ export class StillLineComponent {
   @Input() chartArea: Object = {};
   @Input() width: string =  '100%';
   @Input() marker: Object = {};
-  @Input() originalDataRed = []
-  @Input() originalDataIr = []
+  @Input() originalData = []
+  @Input() originalData2 = []
   @Input() tooltip: Object = {
       enable: true
   };
-
+  @Input() name1;
+  @Input() name2;
   @Input() maxData;
   isMobile = false;
 
@@ -35,9 +35,7 @@ export class StillLineComponent {
   };
 
   showNextData() {
-    this.data = this.originalDataRed.slice(this.maxData + 1, this.maxData + (this.isMobile ? 15 : 50))
-    this.data2 = this.originalDataIr.slice(this.maxData + 1, this.maxData + (this.isMobile ? 15 : 50))
-    this.maxData += this.isMobile ? 15 : 50;
+
   }
 
 }

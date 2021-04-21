@@ -7,7 +7,6 @@ import {
   ILoadedEventArgs,
   ChartComponent
 } from "@syncfusion/ej2-angular-charts";
-import { NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 
 @Component({
   selector: 'app-line',
@@ -103,7 +102,7 @@ export class LineComponent {
         //this.saveHistory();
         this.j = 0;
       }
-    }, 150)
+    }, 500)
 
     let primeraSuma = this.primerRango.reduce((a, b) => Number(a) + Number(b), 0);
     let SegundaSuma = this.segundoRango.reduce((a, b) => Number(a) + Number(b), 0);

@@ -38,4 +38,17 @@
       ></app-information>
     </div>
   </div>
+
+  <app-still-line
+    *ngIf="showStillLine"
+    [title]="titleStillLine"
+    [data]="dataStillLine"
+    [primaryXAxis]="primaryXAxisStillLine"
+    [primaryYAxis]="primaryYAxisStillLine"
+    [name1]="fistNameStillLine"
+    [name2]="secondNameStillLine"
+    [data]="dataStillLine"
+    [data2]="data2StillLine"
+  >
+  </app-still-line>
 </div>

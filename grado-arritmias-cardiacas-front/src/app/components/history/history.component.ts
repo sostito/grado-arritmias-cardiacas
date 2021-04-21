@@ -19,18 +19,31 @@ export class HistoryComponent {
   originalDataRed = []
   originalDataIr = []
   historyData;
-  title: string = 'Gráfica Red e Ir';
   width: string =  '100%';
   chartArea: Object = {
-      border: {
-          width: 0
+    border: {
+      width: 0
       }
-  };
-  marker: Object = {
+    };
+    marker: Object = {
       visible: true,
       height: 10,
       width: 10
+    };
+
+  titleStillLine: string = 'Historial de Ritmo cardíaco y SPO2';
+  dataStillLine = []
+  data2StillLine = []
+  primaryXAxisStillLine = {
+    valueType: 'DateTime',
+    intervalType: 'Days'
   };
+  primaryYAxisStillLine = {
+    maximum: 200
+  }
+  showStillLine = false;
+  fistNameStillLine = 'Ritmo Cardiaco'
+  secondNameStillLine = 'SPO2'
 
   constructor(private _http: HttpClient) {
 
@@ -46,11 +59,28 @@ export class HistoryComponent {
   getHistory() {
     this._http.get('https://localhost:44384/api/History/GetHistory/' + localStorage.getItem('userLoged'))
       .subscribe(response => {
-      this.historyData = response
+        this.historyData = response
+        this.getDataStillLine();
     },
     error => {
       console.log(error);
     })
+  }
+
+  getDataStillLine() {
+    for (let key in this.historyData) {
+      let dateSplit = key.substring(0, 10).split('/')
+      this.historyData[key].split('*').map((item2, currentIndex) => {
+        if (currentIndex == 0) {
+          this.dataStillLine.push({ x: new Date(Number(dateSplit[2]),Number(dateSplit[1]), Number(dateSplit[0])), y: Number(item2) })
+        }
+
+        if (currentIndex == 1) {
+          this.data2StillLine.push({ x: new Date(Number(dateSplit[2]),Number(dateSplit[1]), Number(dateSplit[0])), y: Number(item2) })
+        }
+       })
+    }
+    this.showStillLine = true
   }
 
   getDataChart(keyDay) {
