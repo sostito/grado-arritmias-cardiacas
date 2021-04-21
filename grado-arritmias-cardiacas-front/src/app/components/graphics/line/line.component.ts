@@ -63,6 +63,10 @@ export class LineComponent {
     }
   }
 
+  primerRango = []
+  segundoRango = []
+  tercerRango = []
+
 
   public loaded(args: ILoadedEventArgs): void {
     this.intervalId = setTimeout(() => {
@@ -72,12 +76,22 @@ export class LineComponent {
       if ((this.visibleHR != '-')) {
         this.i++;
         this.j++;
+
+        if (this.visibleHR <= 90) {
+          this.primerRango.push(this.visibleHR)
+        } else if (this.visibleHR > 90 && this.visibleHR <= 130) {
+          this.segundoRango.push(this.visibleHR)
+        } else {
+          this.tercerRango.push(this.visibleHR)
+        }
+
         if (this.averageHr != 0) {
           this.averageHr = (this.averageHr + Number(this.visibleHR)) / 2
         } else {
           this.averageHr = Number(this.visibleHR)
         }
         this.averageHr = Math.round(this.averageHr)
+        console.log(this.averageHr)
       }
       this.seriesHr.push({ x: this.i, y: this.averageHr });
       this.seriesHr.shift();
@@ -86,10 +100,18 @@ export class LineComponent {
 
       if (this.j > 199) {
         clearInterval(this.intervalId)
-        this.saveHistory();
+        //this.saveHistory();
         this.j = 0;
       }
     }, 150)
+
+    let primeraSuma = this.primerRango.reduce((a, b) => Number(a) + Number(b), 0);
+    let SegundaSuma = this.segundoRango.reduce((a, b) => Number(a) + Number(b), 0);
+    let terceraSuma = this.tercerRango.reduce((a, b) => Number(a) + Number(b), 0);
+    console.log('primer rango: ' + this.primerRango.length + ' - suma:  ' + primeraSuma + ' - Dividido: ' + this.primerRango.length + ' - igual: ' + primeraSuma / this.primerRango.length)
+    console.log('segundo rango: ' + this.segundoRango.length + ' - suma:  ' + SegundaSuma + ' - Dividido: ' + this.segundoRango.length + ' - igual: ' + SegundaSuma / this.segundoRango.length)
+    console.log('tercer rango: ' + this.tercerRango.length + ' - suma:  ' + terceraSuma + ' - Dividido: ' + this.tercerRango.length + ' - igual: ' + terceraSuma / this.tercerRango.length)
+    console.log('total: ' + (primeraSuma + SegundaSuma + terceraSuma) / (this.primerRango.length + this.segundoRango.length + this.tercerRango.length))
   }
 
   saveHistory() {
