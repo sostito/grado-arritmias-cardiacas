@@ -8,15 +8,16 @@
   <p><strong>Escoger fecha que se quiere ver</strong></p>
   <p
     *ngFor="let item of historyData | keyvalue"
-    (click)="getDataChart(item.key)"
+    (click)="getData(item.key)"
     style="cursor: pointer"
     class="fadeIn fast"
   >
     - {{ item.key }}
   </p>
 
-  <div class="row mt-5" *ngIf="showInformation">
+  <div class="row my-4" *ngIf="showInformation">
     <div class="col-lg-6 col-sm-12 animated fadeIn fast">
+      <h5 class="text-center mb-4">Informacion sobre ritmo cardíaco</h5>
       <app-information
         [information]="hrResult"
         [toolTipClass]="hrTooltipClass"
@@ -25,13 +26,24 @@
         [information]="hrMessage"
         [toolTipClass]="hrTooltipClass"
       ></app-information>
+      <app-information
+        *ngIf="showTypeHr"
+        [information]="informationTypeHr"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
+      <app-information
+        *ngIf="showTypeSPO2"
+        [information]="informationTypeSPO2"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
     </div>
+
     <div class="col-lg-6 col-sm-12 animated fadeIn fast">
+      <h5 class="text-center mb-4">Informacion sobre oxígeno en sangre</h5>
       <app-information
         [information]="SPO2Result"
         [toolTipClass]="SPO2TooltipClass"
       ></app-information>
-
       <app-information
         [information]="SPO2Message"
         [toolTipClass]="SPO2TooltipClass"
@@ -49,6 +61,7 @@
     [name2]="secondNameStillLine"
     [data]="dataStillLine"
     [data2]="data2StillLine"
+    class="mb-5"
   >
   </app-still-line>
 </div>

@@ -70,9 +70,20 @@ export class LineComponent {
 
 
   public loaded(args: ILoadedEventArgs): void {
+
+
+    let primeraSuma = this.primerRango.reduce((a, b) => Number(a) + Number(b), 0);
+    let SegundaSuma = this.segundoRango.reduce((a, b) => Number(a) + Number(b), 0);
+    let terceraSuma = this.tercerRango.reduce((a, b) => Number(a) + Number(b), 0);
+    /*
+    console.log('primer rango: ' + this.primerRango.length + ' - suma:  ' + primeraSuma + ' - Dividido: ' + this.primerRango.length + ' - igual: ' + primeraSuma / this.primerRango.length)
+    console.log('segundo rango: ' + this.segundoRango.length + ' - suma:  ' + SegundaSuma + ' - Dividido: ' + this.segundoRango.length + ' - igual: ' + SegundaSuma / this.segundoRango.length)
+    console.log('tercer rango: ' + this.tercerRango.length + ' - suma:  ' + terceraSuma + ' - Dividido: ' + this.tercerRango.length + ' - igual: ' + terceraSuma / this.tercerRango.length)
+    */
+    var total = (primeraSuma + SegundaSuma ) / (this.primerRango.length + this.segundoRango.length )
+
+
     this.intervalId = setTimeout(() => {
-
-
 
       if ((this.visibleHR != '-')) {
         this.i++;
@@ -92,9 +103,8 @@ export class LineComponent {
           this.averageHr = Number(this.visibleHR)
         }
         this.averageHr = Math.round(this.averageHr)
-        //console.log(this.averageHr)
       }
-      this.seriesHr.push({ x: this.i, y: this.averageHr });
+      this.seriesHr.push({ x: this.i, y: total });
       this.seriesHr.shift();
       args.chart.series[0].dataSource = this.seriesHr;
       args.chart.refresh();
@@ -106,28 +116,18 @@ export class LineComponent {
       }
     }, 500)
 
-    let primeraSuma = this.primerRango.reduce((a, b) => Number(a) + Number(b), 0);
-    let SegundaSuma = this.segundoRango.reduce((a, b) => Number(a) + Number(b), 0);
-    let terceraSuma = this.tercerRango.reduce((a, b) => Number(a) + Number(b), 0);
-    console.log('primer rango: ' + this.primerRango.length + ' - suma:  ' + primeraSuma + ' - Dividido: ' + this.primerRango.length + ' - igual: ' + primeraSuma / this.primerRango.length)
-    console.log('segundo rango: ' + this.segundoRango.length + ' - suma:  ' + SegundaSuma + ' - Dividido: ' + this.segundoRango.length + ' - igual: ' + SegundaSuma / this.segundoRango.length)
-    console.log('tercer rango: ' + this.tercerRango.length + ' - suma:  ' + terceraSuma + ' - Dividido: ' + this.tercerRango.length + ' - igual: ' + terceraSuma / this.tercerRango.length)
-    console.log('total: ' + (primeraSuma + SegundaSuma + terceraSuma) / (this.primerRango.length + this.segundoRango.length + this.tercerRango.length))
 
     let avgHr: number;
-
-    if(primeraSuma.length > SegundaSuma.length && primeraSuma.length > terceraSuma.length ){
+    if(this.primerRango.length > this.segundoRango.length && this.primerRango.length > this.tercerRango.length ){
       avgHr = Math.floor(primeraSuma / this.primerRango.length);
-    }else if(SegundaSuma.length > primeraSuma.length && SegundaSuma.length > terceraSuma.length){
+    }else if(this.segundoRango.length > this.primerRango.length && this.segundoRango.length > this.tercerRango.length){
       avgHr = Math.floor(SegundaSuma / this.segundoRango.length);
-    }else if(terceraSuma.length > primeraSuma.length && terceraSuma.length > SegundaSuma.length){
+    }else if(this.tercerRango.length > this.primerRango.length && this.tercerRango.length > this.segundoRango.length){
       avgHr = Math.floor(terceraSuma / this.tercerRango.length);
-    }else{
-      avgHr = Math.floor(primeraSuma / this.primerRango.length);
     }
 
-    if(!isNaN(avgHr)){
-      console.log('WTF: ', avgHr);
+    if (!isNaN(avgHr)) {
+      console.log('wtf: ' + avgHr)
       this.lastHRValue.emit(String(avgHr));
     }
   }

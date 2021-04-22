@@ -206,7 +206,6 @@ export class MainComponent /*implements OnInit*/ {
   }
 
   UpdateHRValue(hrValue){
-    console.log(this.sPO2);
     this.visibleSPO2 = String(this.sPO2.reduce((op, item) => op = op > item ? op : item, 0));
     this.lastHRValue = hrValue;
     this.calculateStats(hrValue);

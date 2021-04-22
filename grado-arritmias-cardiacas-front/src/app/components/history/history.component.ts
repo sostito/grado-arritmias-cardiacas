@@ -45,6 +45,12 @@ export class HistoryComponent {
   fistNameStillLine = 'Ritmo Cardiaco'
   secondNameStillLine = 'SPO2'
 
+  showTypeHr = false;
+  informationTypeHr;
+
+  showTypeSPO2 = false;
+  informationTypeSPO2;
+
   constructor(private _http: HttpClient) {
 
     if (window.innerWidth < 768) {
@@ -83,7 +89,7 @@ export class HistoryComponent {
     this.showStillLine = true
   }
 
-  getDataChart(keyDay) {
+  getData(keyDay) {
     let hr;
     let spo2;
     this.historyData[keyDay].split('*').map((item2, currentIndex) => {
@@ -103,6 +109,7 @@ export class HistoryComponent {
   }
 
   calculateUser(hr, spo2) {
+    this.showTypeHr = false;
     const user = JSON.parse(localStorage.getItem('dataUser'));
 
     if (user.age <= 2) {
@@ -136,6 +143,16 @@ export class HistoryComponent {
       } else {
         this.hrTooltipClass = "alert alert-danger"
         this.hrMessage = "Ritmo cardiaco NO OPTIMO. " + this.hrMessage;
+      }
+
+      if (hr < 60) {
+        this.showTypeSPO2 = true;
+        this.informationTypeSPO2 = 'Su ritmo cardiaco está por debajo de 60 lpm, lo cual indica una bradicardia.';
+      }
+
+      if (hr > 100) {
+        this.showTypeHr = true;
+        this.informationTypeHr = "Su ritmo cardiaco está por encima de 100 lpm, lo cual indica una taquicardia."
       }
 
     } else if (user.age > 65) {
