@@ -68,18 +68,16 @@ export class LineComponent {
   segundoRango = []
   tercerRango = []
 
-
   public loaded(args: ILoadedEventArgs): void {
-
 
     let primeraSuma = this.primerRango.reduce((a, b) => Number(a) + Number(b), 0);
     let SegundaSuma = this.segundoRango.reduce((a, b) => Number(a) + Number(b), 0);
     let terceraSuma = this.tercerRango.reduce((a, b) => Number(a) + Number(b), 0);
-    /*
+
     console.log('primer rango: ' + this.primerRango.length + ' - suma:  ' + primeraSuma + ' - Dividido: ' + this.primerRango.length + ' - igual: ' + primeraSuma / this.primerRango.length)
     console.log('segundo rango: ' + this.segundoRango.length + ' - suma:  ' + SegundaSuma + ' - Dividido: ' + this.segundoRango.length + ' - igual: ' + SegundaSuma / this.segundoRango.length)
     console.log('tercer rango: ' + this.tercerRango.length + ' - suma:  ' + terceraSuma + ' - Dividido: ' + this.tercerRango.length + ' - igual: ' + terceraSuma / this.tercerRango.length)
-    */
+
     var total = (primeraSuma + SegundaSuma ) / (this.primerRango.length + this.segundoRango.length )
 
 
@@ -89,9 +87,9 @@ export class LineComponent {
         this.i++;
         this.j++;
 
-        if (this.visibleHR <= 90) {
+        if (this.visibleHR <= 100) {
           this.primerRango.push(this.visibleHR)
-        } else if (this.visibleHR > 90 && this.visibleHR <= 130) {
+        } else if (this.visibleHR > 100 && this.visibleHR <= 130) {
           this.segundoRango.push(this.visibleHR)
         } else {
           this.tercerRango.push(this.visibleHR)
