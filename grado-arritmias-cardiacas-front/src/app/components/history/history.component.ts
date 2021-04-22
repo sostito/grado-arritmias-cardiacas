@@ -110,6 +110,9 @@ export class HistoryComponent {
 
   calculateUser(hr, spo2) {
     this.showTypeHr = false;
+    this.showTypeSPO2 = false;
+    this.informationTypeHr = ''
+    this.informationTypeSPO2 = ''
     const user = JSON.parse(localStorage.getItem('dataUser'));
 
     if (user.age <= 2) {
