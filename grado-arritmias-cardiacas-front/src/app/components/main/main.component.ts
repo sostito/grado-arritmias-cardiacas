@@ -28,6 +28,7 @@ export class MainComponent /*implements OnInit*/ {
   statusBarLevel: number = 1;
   userData: User;
   lastHRValue: String = '-';
+  disabledMetering = false;
 
   currentIndex = 1;
 
@@ -49,7 +50,6 @@ export class MainComponent /*implements OnInit*/ {
         this.sPO2.push(Number(splitItem[2]))
         this.sPO2Valid.push(splitItem[3])
         this.visibleHR = splitItem[1] == '1' ? splitItem[0] : this.visibleHR
-        //this.visibleSPO2 = (splitItem[3] && splitItem[3].includes('1')) ? splitItem[2] : this.visibleSPO2
         this.currentIndex++;
       }
     })
@@ -188,6 +188,7 @@ export class MainComponent /*implements OnInit*/ {
   }
 
   enabled() {
+    this.disabledMetering = true
     this.signalRService.dataChartLine = [];
     this.signalRService.sendHeartBeat();
     this.enabledGraph = true;
