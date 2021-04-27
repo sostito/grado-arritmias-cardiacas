@@ -1,4 +1,4 @@
-<div class="animated fadeIn fast">
+<div class="animated fadeIn fast mb-5">
   <div id="action-description">
     <p>
       En esta página podras visualizar el historico de mediciones realizadas.
@@ -64,4 +64,11 @@
     class="mb-5"
   >
   </app-still-line>
+  <button
+    class="btn btn-primary"
+    (click)="getDataStillLine()"
+    [disabled]="enabledNextData"
+  >
+    Siguientes datos
+  </button>
 </div>

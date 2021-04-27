@@ -36,6 +36,8 @@ export class LineComponent {
   tasks: Observable<Task[]>;
   @Output() lastHRValue = new EventEmitter<string>();
 
+  avgHr: number;
+
   public lineChartOptions = {
     responsive: true,
   };
@@ -109,31 +111,30 @@ export class LineComponent {
 
       if (this.j > 60) {
         clearInterval(this.intervalId)
-        //this.saveHistory();
+        this.saveHistory();
         this.j = 0;
       }
     }, 500)
 
 
-    let avgHr: number;
     if(this.primerRango.length > this.segundoRango.length && this.primerRango.length > this.tercerRango.length ){
-      avgHr = Math.floor(primeraSuma / this.primerRango.length);
+      this.avgHr = Math.floor(primeraSuma / this.primerRango.length);
     }else if(this.segundoRango.length > this.primerRango.length && this.segundoRango.length > this.tercerRango.length){
-      avgHr = Math.floor(SegundaSuma / this.segundoRango.length);
+      this.avgHr = Math.floor(SegundaSuma / this.segundoRango.length);
     }else if(this.tercerRango.length > this.primerRango.length && this.tercerRango.length > this.segundoRango.length){
-      avgHr = Math.floor(terceraSuma / this.tercerRango.length);
+      this.avgHr = Math.floor(terceraSuma / this.tercerRango.length);
     }
 
-    if (!isNaN(avgHr)) {
-      console.log('wtf: ' + avgHr)
-      this.lastHRValue.emit(String(avgHr));
+    if (!isNaN(this.avgHr)) {
+      console.log('wtf: ' + this.avgHr)
+      this.lastHRValue.emit(String(this.avgHr));
     }
   }
 
   saveHistory() {
     let body = {
       userName: localStorage.getItem('userLoged'),
-      data: `${JSON.stringify(this.averageHr)}*${JSON.stringify(Number(this.visibleSPO2))}`
+      data: `${JSON.stringify(this.avgHr)}*${JSON.stringify(Number(this.visibleSPO2))}`
     }
 
     this._http.post('https://localhost:44384/api/History/SaveHistory', body )
