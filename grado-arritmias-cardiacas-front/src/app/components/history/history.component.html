@@ -15,9 +15,36 @@
     - {{ item.key }}
   </p>
 
-  <div class="row my-4" *ngIf="showInformation">
-    <div class="col-lg-6 col-sm-12 animated fadeIn fast">
+  <div class="row my-4 animated fadeIn fast" *ngIf="showInformation">
+    <div class="mb-5">
+      <h4 class="text-center mb-4">
+        ¿Como interpretar los colores de la siguiente información?
+      </h4>
+      <p class="alert alert-info text-center">
+        Este color representa una información a tener en cuenta para el resto.
+      </p>
+      <div class="row">
+        <div class="col-4">
+          <p class="alert alert-success text-center">Valor Optimo.</p>
+        </div>
+        <div class="col-4">
+          <p class="alert alert-warning text-center">Valor Intermedio.</p>
+        </div>
+        <div class="col-4">
+          <p class="alert alert-danger text-center">Valor No Optimo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col-lg-6 col-sm-12 animated fadeIn fast py-4"
+      style="border: solid 1px"
+    >
       <h5 class="text-center mb-4">Informacion sobre ritmo cardíaco</h5>
+      <app-information
+        [information]="defaultMessagge"
+        [toolTipClass]="defaultMessaggeType"
+      ></app-information>
       <app-information
         [information]="hrResult"
         [toolTipClass]="hrTooltipClass"
@@ -38,7 +65,10 @@
       ></app-information>
     </div>
 
-    <div class="col-lg-6 col-sm-12 animated fadeIn fast">
+    <div
+      class="col-lg-6 col-sm-12 animated fadeIn fast py-4"
+      style="border: solid 1px"
+    >
       <h5 class="text-center mb-4">Informacion sobre oxígeno en sangre</h5>
       <app-information
         [information]="SPO2Result"

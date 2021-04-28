@@ -55,6 +55,11 @@ export class HistoryComponent {
   currentflagData = 1;
   enabledNextData = true;
 
+  defaultMessagge = "La información dada acontinuación tienen de referencia una persona sedentaria en estado de reposo, "+
+                    "para personas que practican deporte habitualmente, el ritmo cardiaco puede estar por debajo de las " +
+                    "60 pulsaciones por minuto y esto sería un valor OPTIMO."
+  defaultMessaggeType = "alert alert-info"
+
   constructor(private _http: HttpClient) {
 
     if (window.innerWidth < 768) {
@@ -187,13 +192,13 @@ export class HistoryComponent {
 
     if (spo2 > 95) {
       this.SPO2TooltipClass = "alert alert-success"
-      this.SPO2Message = "Ritmo cardiaco NORMAL. " + this.SPO2Message;
+      this.SPO2Message = "SPO2 NORMAL. " + this.SPO2Message;
     } else if(spo2 >= 80 && spo2 < 95) {
       this.SPO2TooltipClass = "alert alert-warning"
-      this.SPO2Message = "Ritmo cardiaco NO OPTIMO. " + this.SPO2Message;
+      this.SPO2Message = "SPO2 NO OPTIMO. " + this.SPO2Message;
     } else {
       this.SPO2TooltipClass = "alert alert-danger"
-      this.SPO2Message = "Ritmo cardiaco BAJO. " + this.SPO2Message;
+      this.SPO2Message = "SPO2 BAJO. " + this.SPO2Message;
     }
 
   }
