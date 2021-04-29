@@ -14,23 +14,49 @@
           <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
               <label for="initialDate">Fecha Inicial</label>
-              <ngx-datepicker [(ngModel)]="initialDate" id="initialDate" [options]="options"></ngx-datepicker>
+              <ngx-datepicker
+                [(ngModel)]="initialDate"
+                id="initialDate"
+                [options]="options"
+              ></ngx-datepicker>
             </div>
             <div class="col-md-5 col-sm-12 col-xs-12">
               <label for="finalDate">Fecha Final</label>
-              <ngx-datepicker [(ngModel)]="finalDate" id="finalDate" [options]="options"></ngx-datepicker>
+              <ngx-datepicker
+                [(ngModel)]="finalDate"
+                id="finalDate"
+                [options]="options"
+              ></ngx-datepicker>
             </div>
             <div class="col-md-2">
-              <button type="button" class="btn btn-primary mt-3" [disabled]="loadingHistory" (click)="getHistory()">🔎</button>
+              <button
+                type="button"
+                class="btn btn-primary mt-3"
+                [disabled]="loadingHistory"
+                (click)="getHistory()"
+              >
+                🔎
+              </button>
             </div>
           </div>
         </div>
         <div class="col-6">
-          <div *ngIf="historyData" style="height: 200px; width: 500px;overflow-y: scroll;" class="card">
+          <div
+            *ngIf="historyData"
+            style="height: 200px; width: 500px; overflow-y: scroll"
+            class="card"
+          >
             <div class="card-body">
               <h5 class="card-title">Historial</h5>
               <ul class="list-group">
-                <li class="list-group-item list-group-item-action" style="cursor: pointer" *ngFor="let item of historyData | keyvalue" (click)="getData(item.key)" >📊 {{ item.key }}</li>
+                <li
+                  class="list-group-item list-group-item-action"
+                  style="cursor: pointer"
+                  *ngFor="let item of historyData | keyvalue"
+                  (click)="getData(item.key)"
+                >
+                  📊 {{ item.key }}
+                </li>
               </ul>
             </div>
           </div>
@@ -38,7 +64,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row my-4 animated fadeIn fast" *ngIf="showInformation">
     <div class="mb-5">
       <h4 class="text-center mb-4">
@@ -118,11 +144,11 @@
     class="mb-5"
   >
   </app-still-line>
-  <button
+  <!--<button
     class="btn btn-primary"
     (click)="getDataStillLine()"
     [disabled]="enabledNextData"
   >
     Siguientes datos
-  </button>
+  </button>-->
 </div>
