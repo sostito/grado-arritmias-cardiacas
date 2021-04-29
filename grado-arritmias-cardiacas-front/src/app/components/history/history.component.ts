@@ -1,5 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import locale from 'date-fns/locale/en-US';
+import { DatepickerOptions } from 'ng2-datepicker';
+
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -58,9 +62,26 @@ export class HistoryComponent {
   defaultMessagge = "La información dada acontinuación tienen de referencia una persona sedentaria en estado de reposo, "+
                     "para personas que practican deporte habitualmente, el ritmo cardiaco puede estar por debajo de las " +
                     "60 pulsaciones por minuto y esto sería un valor OPTIMO."
-  defaultMessaggeType = "alert alert-info"
+  defaultMessaggeType = "alert alert-info";
+  loadingHistory = false;
 
-  constructor(private _http: HttpClient) {
+  initialDate = new Date();
+  finalDate = new Date();
+
+  options: DatepickerOptions = {
+    placeholder: '', // placeholder in case date model is null | undefined, example: 'Please pick a date'
+    format: 'yyyy-MM-dd', // date format to display in input
+    formatTitle: 'yyyy-MM-dd',
+    formatDays: 'EEEEE',
+    firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+    locale: locale, // date-fns locale
+    position: 'bottom',
+    inputClass: '', // custom input CSS class to be applied
+    calendarClass: 'datepicker-default', // custom datepicker calendar CSS class to be applied
+    scrollBarColor: '#dfe3e9', // in case you customize you theme, here you define scroll bar color
+  };
+
+  constructor(private _http: HttpClient, private datePipe: DatePipe) {
 
     if (window.innerWidth < 768) {
       this.isMobile = true;
@@ -72,13 +93,22 @@ export class HistoryComponent {
   }
 
   getHistory() {
-    this._http.get('https://localhost:44384/api/History/GetHistory/' + localStorage.getItem('userLoged'))
+    this.loadingHistory = true;
+    let request = {
+      UserName: localStorage.getItem('userLoged'),
+      InitialDate: this.datePipe.transform(this.initialDate, 'yyyy-MM-dd'),
+      FinalDate: this.datePipe.transform(this.finalDate, 'yyyy-MM-dd')
+    }
+
+    this._http.post('https://localhost:44384/api/History/GetHistory/', request )
       .subscribe(response => {
         this.historyData = response
         this.getDataStillLine();
+        this.loadingHistory = false;
     },
     error => {
       console.log(error);
+      this.loadingHistory = false;
     })
   }
 
@@ -88,7 +118,7 @@ export class HistoryComponent {
     let currentIndex = 1;
     for (let key in this.historyData) {
       if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
-        let dateSplit = key.substring(0, 10).split('/')
+        let dateSplit = key.substring(0, 10).split('/');
         this.historyData[key].split('*').map((item2, currentIndex) => {
           if (currentIndex == 0) {
             this.dataStillLine.push({ x: new Date(Number(dateSplit[2]),Number(dateSplit[1]), Number(dateSplit[0])), y: Number(item2) })
@@ -104,8 +134,9 @@ export class HistoryComponent {
 
     this.currentflagData += this.finalFlagData;
     this.finalFlagData += this.finalFlagData;
-    this.enabledNextData = this.currentflagData > Object.keys(this.historyData).length
-    this.showStillLine = true
+    this.enabledNextData = this.currentflagData > Object.keys(this.historyData).length;
+    this.showStillLine = true;
+    
   }
 
   getData(keyDay) {
@@ -123,7 +154,7 @@ export class HistoryComponent {
         this.SPO2Message = " Los valores inferiores al 90 por ciento se consideran bajos e indican la necesidad de oxígeno suplementario. \n\nPara las personas con afecciones pulmonares crónicas y otros problemas respiratorios, no se aplica el rango de SpO2 'normal' del 95% al ​​100%. Estas personas siempre deben consultar con tu médico para obtener información sobre los niveles de oxígeno aceptables para tu estado de salud único. "
       }
     })
-    this.calculateUser(hr, spo2)
+    this.calculateUser(hr, spo2);
     this.showInformation = true;
   }
 

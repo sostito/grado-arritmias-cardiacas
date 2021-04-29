@@ -26,10 +26,10 @@ namespace grado_arritmias_cardiacas.Controllers
          return BadRequest();
       }
 
-      [HttpGet("[action]/{userName}")]
-      public async Task<ActionResult<GetHistoryResponse>> GetHistory([FromRoute] string userName)
+      [HttpPost("[action]")]
+      public async Task<ActionResult<GetHistoryResponse>> GetHistory([FromBody] GetHistoryRequest request)
       {
-         var response = await _dataBaseService.GetHistory(userName, _configuration["ConnectionStrings:DataBase"]);
+         var response = await _dataBaseService.GetHistory(request, _configuration["ConnectionStrings:DataBase"]);
          return Ok(response);
       }
    }

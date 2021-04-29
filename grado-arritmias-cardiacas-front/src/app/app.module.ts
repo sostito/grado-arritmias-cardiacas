@@ -29,6 +29,9 @@ import { AccountComponent } from './components/account/account.component';
 import { StillLineComponent } from './components/graphics/still-line/still-line.component';
 import { HistoryComponent } from './components/history/history.component';
 import { InformationComponent } from './components/shared/information/information.component';
+import { DatepickerModule } from 'ng2-datepicker';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -58,13 +61,13 @@ import { InformationComponent } from './components/shared/information/informatio
     ButtonModule,
     AccumulationChartAllModule,
     NumericTextBoxModule,
-    DatePickerModule,
     DropDownListAllModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DatepickerModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
