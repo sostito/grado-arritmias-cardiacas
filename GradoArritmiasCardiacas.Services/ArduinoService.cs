@@ -9,7 +9,7 @@ namespace GradoArritmiasCardiacas.Services
 
       private ArduinoService()
       {
-         Arduino.PortName = "COM3";
+         Arduino.PortName = "COM5";
          Arduino.BaudRate = 115200;
          Arduino.Open();
       }

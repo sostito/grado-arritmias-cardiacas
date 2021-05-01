@@ -64,162 +64,71 @@
       </div>
     </div>
   </div>
-
-  <div class="accordion" id="accordionExample" *ngIf="showInformation">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          ¿Como interpretar los colores de la siguiente información?
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div class="mb-5">
-            <p class="alert alert-info text-center">
-              Este color representa una información a tener en cuenta para el resto.
-            </p>
-            <div class="row">
-              <div class="col-4">
-                <p class="alert alert-success text-center">Valor Optimo.</p>
-              </div>
-              <div class="col-4">
-                <p class="alert alert-warning text-center">Valor Intermedio.</p>
-              </div>
-              <div class="col-4">
-                <p class="alert alert-danger text-center">Valor No Optimo.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Ritmo Cardiaco y Oxígeno en sangre
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div class="row">
-            <div
-              class="col-lg-6 col-sm-12 animated fadeIn fast py-4"
-              style="border: solid 1px"
-            >
-              <h5 class="text-center mb-4">Informacion sobre ritmo cardíaco</h5>
-              <app-information
-                [information]="defaultMessagge"
-                [innerHTML]="false"
-                [toolTipClass]="defaultMessaggeType"
-              ></app-information>
-              <app-information
-                [information]="hrResult"
-                [innerHTML]="false"
-                [toolTipClass]="hrTooltipClass"
-              ></app-information>
-              <app-information
-                [information]="hrMessage"
-                [innerHTML]="false"
-                [toolTipClass]="hrTooltipClass"
-              ></app-information>
-              <app-information
-                *ngIf="showTypeHr"
-                [information]="informationTypeHr"
-                [innerHTML]="false"
-                [toolTipClass]="hrTooltipClass"
-              ></app-information>
-              <app-information
-                *ngIf="showTypeSPO2"
-                [information]="informationTypeSPO2"
-                [innerHTML]="false"
-                [toolTipClass]="hrTooltipClass"
-              ></app-information>
-            </div>
-
-            <div
-              class="col-lg-6 col-sm-12 animated fadeIn fast py-4"
-              style="border: solid 1px"
-            >
-              <h5 class="text-center mb-4">Informacion sobre oxígeno en sangre</h5>
-              <app-information
-                [information]="SPO2Result"
-                [innerHTML]="false"
-                [toolTipClass]="SPO2TooltipClass"
-              ></app-information>
-              <app-information
-                [information]="SPO2Message"
-                [innerHTML]="false"
-                [toolTipClass]="SPO2TooltipClass"
-              ></app-information>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          ¿Por qué razón tengo arritmias cardiacas?
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <app-information
-              [information]="causesTypeHr"
-              [innerHTML]="true"
-              [toolTipClass]="hrTooltipClass"
-            ></app-information>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingFour">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-          Tratamiento
-        </button>
-      </h2>
-      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div *ngFor="let treatment of treatmentsTypeHr">
-            <app-information
-              *ngIf="showTypeHr"
-              [information]="treatment"
-              [innerHTML]="true"
-              [toolTipClass]="hrTooltipClass"
-            ></app-information>
-          </div>
-          <app-information
-              *ngIf="!showTypeHr"
-              [information]="defaultTreatmentsTypeHr"
-              [innerHTML]="false"
-              [toolTipClass]="hrTooltipClass"
-            ></app-information>
-        </div>
-      </div>
-    </div>
-  </div>
   
   <div class="row my-4 animated fadeIn fast" *ngIf="showInformation">
-    <app-still-line
-      *ngIf="showStillLine"
-      [title]="titleStillLine"
-      [data]="dataStillLine"
-      [primaryXAxis]="primaryXAxisStillLine"
-      [primaryYAxis]="primaryYAxisStillLine"
-      [name1]="fistNameStillLine"
-      [name2]="secondNameStillLine"
-      [data]="dataStillLine"
-      [data2]="data2StillLine"
-      class="mb-5"
+    <div class="mb-5">
+      <h4 class="text-center mb-4">
+        ¿Como interpretar los colores de la siguiente información?
+      </h4>
+      <p class="alert alert-info text-center">
+        Este color representa una información a tener en cuenta para el resto.
+      </p>
+      <div class="row">
+        <div class="col-4">
+          <p class="alert alert-success text-center">Valor Optimo.</p>
+        </div>
+        <div class="col-4">
+          <p class="alert alert-warning text-center">Valor Intermedio.</p>
+        </div>
+        <div class="col-4">
+          <p class="alert alert-danger text-center">Valor No Optimo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col-lg-6 col-sm-12 animated fadeIn fast py-4"
+      style="border: solid 1px"
     >
-    </app-still-line>
-    <button
-      class="btn btn-primary"
-      (click)="getDataStillLine()"
-      [disabled]="enabledNextData"
+      <h5 class="text-center mb-4">Informacion sobre ritmo cardíaco</h5>
+      <app-information
+        [information]="defaultMessagge"
+        [toolTipClass]="defaultMessaggeType"
+      ></app-information>
+      <app-information
+        [information]="hrResult"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
+      <app-information
+        [information]="hrMessage"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
+      <app-information
+        *ngIf="showTypeHr"
+        [information]="informationTypeHr"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
+      <app-information
+        *ngIf="showTypeSPO2"
+        [information]="informationTypeSPO2"
+        [toolTipClass]="hrTooltipClass"
+      ></app-information>
+    </div>
+
+    <div
+      class="col-lg-6 col-sm-12 animated fadeIn fast py-4"
+      style="border: solid 1px"
     >
-      Siguientes datos
-    </button>
+      <h5 class="text-center mb-4">Informacion sobre oxígeno en sangre</h5>
+      <app-information
+        [information]="SPO2Result"
+        [toolTipClass]="SPO2TooltipClass"
+      ></app-information>
+      <app-information
+        [information]="SPO2Message"
+        [toolTipClass]="SPO2TooltipClass"
+      ></app-information>
+    </div>
   </div>
 
   <app-still-line
@@ -235,11 +144,11 @@
     class="mb-5"
   >
   </app-still-line>
-  <!--<button
+  <button
     class="btn btn-primary"
     (click)="getDataStillLine()"
     [disabled]="enabledNextData"
   >
     Siguientes datos
-  </button>-->
+  </button>
 </div>
