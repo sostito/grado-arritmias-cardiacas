@@ -153,25 +153,24 @@ export class HistoryComponent implements OnInit {
     let currentIndex = 1;
     for (let key in this.historyData) {
       if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
-        let dateSplit = key.substring(0, 10).split('/')
+        let dateSplit = key.substring(0, 10).split('/');
         this.historyData[key].split('*').map((item2, currentIndex) => {
           if (currentIndex == 0) {
-            this.dataStillLine.push({ x: new Date(Number(dateSplit[2]),Number(dateSplit[1]), Number(dateSplit[0])), y: Number(item2) })
+            this.dataStillLine.push({ x: new Date(`${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`), y: Number(item2) })
           }
 
           if (currentIndex == 1) {
-            this.data2StillLine.push({ x: new Date(Number(dateSplit[2]),Number(dateSplit[1]), Number(dateSplit[0])), y: Number(item2) })
+            this.data2StillLine.push({ x: new Date(`${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`), y: Number(item2) })
           }
         })
-      }
+      //}
       currentIndex++;
     }
-
     this.currentflagData += this.finalFlagData;
     this.finalFlagData += this.finalFlagData;
     this.enabledNextData = this.currentflagData > Object.keys(this.historyData).length;
     this.showStillLine = true;
-    console.log(this.dataStillLine);
+    
   }
 
   getData(keyDay) {
