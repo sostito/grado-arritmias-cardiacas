@@ -152,8 +152,8 @@ export class HistoryComponent implements OnInit {
     this.data2StillLine = []
     let currentIndex = 1;
     for (let key in this.historyData) {
-      if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
-        let dateSplit = key.substring(0, 10).split('/');
+      //if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
+      let dateSplit = key.substring(0, 10).split('/');
         this.historyData[key].split('*').map((item2, currentIndex) => {
           if (currentIndex == 0) {
             this.dataStillLine.push({ x: new Date(`${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`), y: Number(item2) })
@@ -170,7 +170,6 @@ export class HistoryComponent implements OnInit {
     this.finalFlagData += this.finalFlagData;
     this.enabledNextData = this.currentflagData > Object.keys(this.historyData).length;
     this.showStillLine = true;
-    
   }
 
   getData(keyDay) {
