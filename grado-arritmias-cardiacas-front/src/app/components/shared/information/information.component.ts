@@ -9,6 +9,7 @@ export class InformationComponent implements OnInit {
 
   @Input() information: string;
   @Input() toolTipClass: string = "alert alert-success";
+  @Input() innerHTML: boolean = false;
 
   constructor() { }
 

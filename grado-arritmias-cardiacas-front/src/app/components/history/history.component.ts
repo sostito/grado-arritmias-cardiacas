@@ -9,7 +9,7 @@ import { DatepickerOptions } from 'ng2-datepicker';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })
-export class HistoryComponent {
+export class HistoryComponent implements OnInit {
 
   // custom code end
   isMobile = false;
@@ -65,6 +65,37 @@ export class HistoryComponent {
   defaultMessaggeType = "alert alert-info";
   loadingHistory = false;
 
+  treatmentsTypeHr = [
+    '<strong>Ablación mediante radiofrecuencia</strong>: El procedimiento se realiza por punción de una vena en la ingle. Requiere anestesia local y el paciente está de alta en unas horas.',
+    '<strong>Ablación de la fibrilación y cierre de orejuela izquierda</strong>: El procedimiento consiste en introducir- a través de un catéter y sin necesidad de cirugía abierta- un dispositivo que consigue cerrar una cavidad próxima a la aurícula izquierda del corazón, denominada orejuela, en la que habitualmente se originan los trombos.',
+    '<strong>Crioablación para las arritmias</strong>: La aplicación del frío se consigue introduciendo, por medio de un catéter, un balón lleno de óxido nitroso (compuesto químico empleado como fuente de frío) que llega hasta la intersección de las venas pulmonares con la aurícula izquierda para así aislar e impedir la propagación del impulso eléctrico anómalo. ',
+    '<strong>Marcapasos cardíaco</strong>: Los marcapasos son pequeños aparatos electrónicos capaces de analizar el ritmo del corazón y tratar las arritmias mediante estímulos eléctricos. Su función es suplir las funciones del sistema de excitación y conducción cardiaco. Se implantan, generalmente, bajo anestesia local durante casi todo el procedimiento.',
+    '<strong>Desfibrilador automático implantable</strong>: En algunos pacientes con arritmias graves, potencialmente letales, es necesario implantar un desfibrilador automático implantable, que restaura el ritmo cardiaco normal aplicando automáticamente descargas eléctricas. El desfibrilador controla el ritmo cardíaco permanentemente. Cuando detecta una arritmia, emplea diferentes tratamientos mediante impulsos eléctricos para suprimirla.'
+  ];
+  //From: https://www.cun.es/enfermedades-tratamientos/enfermedades/arritmias-cardiacas
+
+  defaultTreatmentsTypeHr = 'No necesita tratamiento';
+
+  causesTypeHr = [
+    'Ciertas afecciones, como las que se mencionan a continuación, pueden causar o derivar en una arritmia:',
+    `
+      <ul>
+        <li>Un <strong>ataque cardíaco</strong> que está ocurriendo en el momento</li>
+        <li><strong>Proceso de cicatrización del tejido cardíaco</strong> a causa de un ataque cardíaco previo</li>
+        <li><strong>Cambios en la estructura del corazón</strong>, como por una miocardiopatía</li>
+        <li><strong>Obstrucción de las arterias</strong> del corazón (arteriopatía coronaria)</li>
+        <li>Presión arterial alta</li>
+        <li>Glándula tiroides hiperactiva (<strong>hipertiroidismo</strong>)</li>
+        <li>Glándula tiroides hipoactiva (<strong>hipotiroidismo</strong>)</li>
+        <li>Diabetes</li>
+        <li>Apnea del sueño</li>
+        <li>Infección por <strong>coronavirus</strong></li>
+      </ul>
+      
+    `
+  ];
+  //From: https://www.mayoclinic.org/es-es/diseases-conditions/heart-arrhythmia/symptoms-causes/syc-20350668
+
   initialDate = new Date();
   finalDate = new Date();
 
@@ -89,7 +120,10 @@ export class HistoryComponent {
       this.isMobile = false;
     }
 
-    this.getHistory();
+    
+  }
+
+  ngOnInit(){
   }
 
   getHistory() {
@@ -113,12 +147,13 @@ export class HistoryComponent {
   }
 
   getDataStillLine() {
+    console.log(this.historyData);
     this.dataStillLine = []
     this.data2StillLine = []
     let currentIndex = 1;
     for (let key in this.historyData) {
       if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
-        let dateSplit = key.substring(0, 10).split('/');
+        let dateSplit = key.substring(0, 10).split('/')
         this.historyData[key].split('*').map((item2, currentIndex) => {
           if (currentIndex == 0) {
             this.dataStillLine.push({ x: new Date(Number(dateSplit[2]),Number(dateSplit[1]), Number(dateSplit[0])), y: Number(item2) })
@@ -136,7 +171,7 @@ export class HistoryComponent {
     this.finalFlagData += this.finalFlagData;
     this.enabledNextData = this.currentflagData > Object.keys(this.historyData).length;
     this.showStillLine = true;
-    
+    console.log(this.dataStillLine);
   }
 
   getData(keyDay) {

@@ -5,11 +5,20 @@
     });
   });
 </script>
-<div
+<div *ngIf="!innerHTML"
   [class]="toolTipClass"
   role="alert"
   data-toggle="tooltip"
   data-placement="right"
 >
   {{ information }}
+</div>
+
+<div *ngIf="innerHTML"
+  [class]="toolTipClass"
+  role="alert"
+  data-toggle="tooltip"
+  data-placement="right"
+>
+  <a [innerHTML]="information"></a>
 </div>
