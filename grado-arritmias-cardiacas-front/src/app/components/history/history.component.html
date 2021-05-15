@@ -250,9 +250,9 @@
     </div>
   </div>
 
-  <div class="row my-4 animated fadeIn fast" *ngIf="showInformation">
+  <div class="animated fadeIn fast" *ngIf="showStillLine">
     <app-still-line
-      *ngIf="showStillLine"
+      class="row my-4"
       [title]="titleStillLine"
       [data]="dataStillLine"
       [primaryXAxis]="primaryXAxisStillLine"
@@ -267,32 +267,10 @@
     </app-still-line>
     <button
       class="btn btn-primary"
+      [ngClass]="{ disabled: enabledNextData }"
       (click)="getDataStillLine()"
-      [disabled]="enabledNextData"
     >
       Siguientes datos
     </button>
   </div>
-
-  <app-still-line
-    *ngIf="showStillLine"
-    [title]="titleStillLine"
-    [data]="dataStillLine"
-    [primaryXAxis]="primaryXAxisStillLine"
-    [primaryYAxis]="primaryYAxisStillLine"
-    [name1]="fistNameStillLine"
-    [name2]="secondNameStillLine"
-    [data]="dataStillLine"
-    [data2]="data2StillLine"
-    [marker]="marker"
-    class="mb-5"
-  >
-  </app-still-line>
-  <!--<button
-    class="btn btn-primary"
-    (click)="getDataStillLine()"
-    [disabled]="enabledNextData"
-  >
-    Siguientes datos
-  </button>-->
 </div>

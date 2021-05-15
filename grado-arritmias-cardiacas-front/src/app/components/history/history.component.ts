@@ -57,7 +57,8 @@ export class HistoryComponent implements OnInit {
   showTypeSPO2 = false;
   informationTypeSPO2;
 
-  finalFlagData = 5;
+  step = 10;
+  finalFlagData = this.step;
   currentflagData = 1;
   enabledNextData = true;
 
@@ -122,7 +123,8 @@ export class HistoryComponent implements OnInit {
       this.isMobile = false;
     }
 
-
+    this.step = this.isMobile ? 5 : 10;
+    this.finalFlagData = this.step;
   }
 
   ngOnInit(){
@@ -149,12 +151,12 @@ export class HistoryComponent implements OnInit {
   }
 
   getDataStillLine() {
-    console.log(this.historyData);
+    this.showStillLine = false;
     this.dataStillLine = []
     this.data2StillLine = []
     let currentIndex = 1;
     for (let key in this.historyData) {
-      //if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
+      if (this.currentflagData <= currentIndex &&  currentIndex <= this.finalFlagData) {
       let dateSplit = key.substring(0, 10).split('/');
         this.historyData[key].split('*').map((item2, currentIndex) => {
           if (currentIndex == 0) {
@@ -165,11 +167,11 @@ export class HistoryComponent implements OnInit {
             this.data2StillLine.push({ x: new Date(`${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`), y: Number(item2) })
           }
         })
-      //}
+      }
       currentIndex++;
     }
-    this.currentflagData += this.finalFlagData;
-    this.finalFlagData += this.finalFlagData;
+    this.currentflagData += this.step;
+    this.finalFlagData += this.step;
     this.enabledNextData = this.currentflagData > Object.keys(this.historyData).length;
     this.showStillLine = true;
   }
