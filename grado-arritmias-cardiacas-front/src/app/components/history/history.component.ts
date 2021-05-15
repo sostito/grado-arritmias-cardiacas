@@ -39,10 +39,12 @@ export class HistoryComponent implements OnInit {
   dataStillLine = []
   data2StillLine = []
   primaryXAxisStillLine = {
+    title: 'Días del mes',
     valueType: 'DateTime',
     intervalType: 'Days'
   };
   primaryYAxisStillLine = {
+    title: 'Valor obtenido',
     maximum: 200
   }
   showStillLine = false;
@@ -91,7 +93,7 @@ export class HistoryComponent implements OnInit {
         <li>Apnea del sueño</li>
         <li>Infección por <strong>coronavirus</strong></li>
       </ul>
-      
+
     `
   ];
   //From: https://www.mayoclinic.org/es-es/diseases-conditions/heart-arrhythmia/symptoms-causes/syc-20350668
@@ -120,7 +122,7 @@ export class HistoryComponent implements OnInit {
       this.isMobile = false;
     }
 
-    
+
   }
 
   ngOnInit(){
