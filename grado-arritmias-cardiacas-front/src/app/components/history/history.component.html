@@ -9,7 +9,8 @@
 
   <div class="card mb-2">
     <div class="card-body">
-      <div class="row container mb-4">
+      <div class="row mb-4" 
+      [ngClass]="(viewPortData == 'md' || viewPortData == 'lg' || viewPortData == 'xl') ? 'contanier' : ''">
         <div class="col-6">
           <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
@@ -40,10 +41,12 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-sm-12 col-md-6 col-lg-6"
+        [ngClass]="viewPortData == 'xs' ? 'mt-3' : ''">
           <div
             *ngIf="historyData"
-            style="height: 200px; width: 500px; overflow-y: scroll"
+            [ngStyle]="{'width': (viewPortData == 'xs') ? '280px;' : '500px;' }"
+            style="height: 200px; overflow-y: scroll"
             class="card"
           >
             <div class="card-body">
@@ -233,14 +236,14 @@
         <div class="accordion-body">
           <div *ngFor="let treatment of treatmentsTypeHr">
             <app-information
-              *ngIf="showTypeHr"
+              *ngIf="showTypeHrTreatments"
               [information]="treatment"
               [innerHTML]="true"
               [toolTipClass]="hrTooltipClass"
             ></app-information>
           </div>
           <app-information
-            *ngIf="!showTypeHr"
+            *ngIf="!showTypeHrTreatments"
             [information]="defaultTreatmentsTypeHr"
             [innerHTML]="false"
             [toolTipClass]="hrTooltipClass"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+declare  var $:any;
 
 @Component({
   selector: 'app-navbar',
@@ -33,6 +34,10 @@ export class NavbarComponent implements OnInit {
     this._loginService.LoginEmit(false);
     this.isLogin = false;
     this._router.navigate(['/login']);
+  }
+
+  CloseNavbar(){
+    $("#navbarTog").click();
   }
 
 }

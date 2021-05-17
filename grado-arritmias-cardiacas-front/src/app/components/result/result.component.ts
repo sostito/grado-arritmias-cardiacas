@@ -18,7 +18,6 @@ export class ResultComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.lastHRValue);
   }
 
 }

@@ -23,6 +23,7 @@ export class HistoryComponent implements OnInit {
   originalDataRed = []
   originalDataIr = []
   historyData;
+  viewPortData = '';
   width: string =  '100%';
   chartArea: Object = {
     border: {
@@ -52,6 +53,7 @@ export class HistoryComponent implements OnInit {
   secondNameStillLine = 'SPO2'
 
   showTypeHr = false;
+  showTypeHrTreatments = false;
   informationTypeHr;
 
   showTypeSPO2 = false;
@@ -128,6 +130,8 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit(){
+    console.log(getViewport());
+    this.viewPortData = getViewport();
   }
 
   getHistory() {
@@ -196,11 +200,14 @@ export class HistoryComponent implements OnInit {
   }
 
   calculateUser(hr, spo2) {
+    console.log(hr);
     this.showTypeHr = false;
+    this.showTypeHrTreatments = false;
     this.showTypeSPO2 = false;
     this.informationTypeHr = ''
     this.informationTypeSPO2 = ''
     const user = JSON.parse(localStorage.getItem('dataUser'));
+    console.log(user.age);
 
     if (user.age <= 2) {
 
@@ -209,7 +216,9 @@ export class HistoryComponent implements OnInit {
         this.hrTooltipClass = "alert alert-success"
         this.hrMessage = "Ritmo cardiaco OPTIMO. " + this.hrMessage;
       } else {
-        this.hrTooltipClass = "alert alert-danger"
+        this.showTypeHrTreatments = true;
+        this.hrTooltipClass = "alert alert-danger";
+        this.showTypeHrTreatments = true;
         this.hrMessage = "Ritmo cardiaco NO OPTIMO. " + this.hrMessage;
       }
 
@@ -220,7 +229,8 @@ export class HistoryComponent implements OnInit {
         this.hrTooltipClass = "alert alert-success"
         this.hrMessage = "Ritmo cardiaco OPTIMO. " + this.hrMessage;
       } else {
-        this.hrTooltipClass = "alert alert-danger"
+        this.hrTooltipClass = "alert alert-danger";
+        this.showTypeHrTreatments = true;
         this.hrMessage = "Ritmo cardiaco NO OPTIMO. " + this.hrMessage;
       }
 
@@ -231,7 +241,8 @@ export class HistoryComponent implements OnInit {
         this.hrTooltipClass = "alert alert-success"
         this.hrMessage = "Ritmo cardiaco OPTIMO. " + this.hrMessage;
       } else {
-        this.hrTooltipClass = "alert alert-danger"
+        this.hrTooltipClass = "alert alert-danger";
+        this.showTypeHrTreatments = true;
         this.hrMessage = "Ritmo cardiaco NO OPTIMO. " + this.hrMessage;
       }
 
@@ -242,6 +253,7 @@ export class HistoryComponent implements OnInit {
 
       if (hr > 100) {
         this.showTypeHr = true;
+        this.showTypeHrTreatments = true;
         this.informationTypeHr = "Su ritmo cardiaco está por encima de 100 lpm, lo cual indica una taquicardia."
       }
 
@@ -252,7 +264,8 @@ export class HistoryComponent implements OnInit {
         this.hrTooltipClass = "alert alert-success"
         this.hrMessage = "Ritmo cardiaco OPTIMO. " + this.hrMessage;
       } else {
-        this.hrTooltipClass = "alert alert-danger"
+        this.hrTooltipClass = "alert alert-danger";
+        this.showTypeHrTreatments = true;
         this.hrMessage = "Ritmo cardiaco NO OPTIMO. " + this.hrMessage;
       }
 
@@ -271,4 +284,17 @@ export class HistoryComponent implements OnInit {
 
   }
 
+}
+
+function getViewport () {
+  // https://stackoverflow.com/a/8876069
+  const width = Math.max(
+    document.documentElement.clientWidth,
+    window.innerWidth || 0
+  )
+  if (width <= 576) return 'xs'
+  if (width <= 768) return 'sm'
+  if (width <= 992) return 'md'
+  if (width <= 1200) return 'lg'
+  return 'xl'
 }

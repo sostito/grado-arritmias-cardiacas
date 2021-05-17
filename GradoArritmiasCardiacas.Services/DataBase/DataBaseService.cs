@@ -56,7 +56,7 @@ namespace GradoArritmiasCardiacas.Services.DataBase
                 using (MySqlConnection connection = await GetConnectionAsync(connectionString))
                 {
                     var query = $"INSERT INTO user (userName, name, lastName, weight, height, password, age, gender) " +
-                        $"VALUES ('{singinRequest.userName}','{singinRequest.Name}','{singinRequest.lastName}',{singinRequest.weight},{singinRequest.height},'{singinRequest.password}', {singinRequest.age}, '{singinRequest.gender}')";
+                        $"VALUES ('{singinRequest.userName}','{singinRequest.Name}','{singinRequest.lastName}',{singinRequest.weight.ToString().Replace(",", ".")},{singinRequest.height.ToString().Replace(",", ".")},'{singinRequest.password}', {singinRequest.age}, '{singinRequest.gender}')";
                     using var command = new MySqlCommand(query, connection);
                     using var reader = await command.ExecuteReaderAsync();
 

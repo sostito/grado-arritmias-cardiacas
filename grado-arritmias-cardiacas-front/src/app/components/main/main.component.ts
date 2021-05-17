@@ -43,8 +43,13 @@ export class MainComponent /*implements OnInit*/ {
         let result = data['tasks'].map((data) =>
           JSON.parse(data['state'])
         )
+
+
         let dataToProcess = result[this.currentIndex][this.currentIndex - 1]
-        let splitItem = dataToProcess.split(',')
+        let splitItem = dataToProcess.split(',');
+
+        console.log(Number(splitItem[2]));
+
         this.hr.push(splitItem[0])
         this.hrValid.push(splitItem[1])
         this.sPO2.push(Number(splitItem[2]))
@@ -207,6 +212,7 @@ export class MainComponent /*implements OnInit*/ {
   }
 
   UpdateHRValue(hrValue){
+    console.log(this.sPO2);
     this.visibleSPO2 = String(this.sPO2.reduce((op, item) => op = op > item ? op : item, 0));
     this.lastHRValue = hrValue;
     this.calculateStats(hrValue);
