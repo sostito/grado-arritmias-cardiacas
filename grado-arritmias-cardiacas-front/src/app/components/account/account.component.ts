@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
   }
 
   GetUser(){
-    this._http.get(`https://localhost:44384/api/User/GetUser/${localStorage.getItem('userLoged')}`)
+    this._http.get(`${environment.urlApi}api/User/GetUser/${localStorage.getItem('userLoged')}`)
       .subscribe((data: User) => {
         console.log(data);
         if(data !== null){
@@ -56,7 +56,7 @@ export class AccountComponent implements OnInit {
     this.alert = false;
     this.alertMessage = '';
     this.updateLoader = true;
-    this._http.post('https://localhost:44384/api/User/UpdateProfile', this.updateForm.value)
+    this._http.post(`${environment.urlApi}api/User/UpdateProfile`, this.updateForm.value)
       .subscribe(response => {
         this.alertDanger = false;
         this.alert = true;

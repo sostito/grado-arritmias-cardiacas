@@ -3,6 +3,7 @@ import { Task } from './../../../interfaces/TaskModel';
 import { Component, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Output, EventEmitter } from '@angular/core';
+import {environment } from '../../../../environments/environment';
 
 import {
   ILoadedEventArgs,
@@ -137,7 +138,7 @@ export class LineComponent {
       data: `${JSON.stringify(this.avgHr)}*${JSON.stringify(Number(this.visibleSPO2))}`
     }
 
-    this._http.post('https://localhost:44384/api/History/SaveHistory', body )
+    this._http.post(`${environment.urlApi}api/History/SaveHistory`, body )
       .subscribe(response => {
       },
       error => {

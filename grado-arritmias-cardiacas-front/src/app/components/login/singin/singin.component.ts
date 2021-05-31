@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-singin',
@@ -35,7 +36,7 @@ export class SinginComponent implements OnInit {
     this.alert = false;
     this.alertMessage = '';
     this.loginLoader = true;
-    this._http.post('https://localhost:44384/api/Login/Singin', this.singinForm.value)
+    this._http.post(`${environment.urlApi}api/Login/Singin`, this.singinForm.value)
       .subscribe(response => {
         this.singinForm.reset();
         this.alertDanger = false;

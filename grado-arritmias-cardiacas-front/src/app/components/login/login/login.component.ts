@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -31,18 +32,16 @@ export class LoginComponent implements OnInit {
 
   Login(){
     this.loginLoader = true;
-    this._http.post('https://localhost:44384/api/Login/Login', this.loginForm.value)
+    this._http.post(`${environment.urlApi}api/Login/Login`, this.loginForm.value)
       .subscribe(response => {
         this._loginService.LoginEmit(true, this.loginForm.value.userName);
 
 
-        this._http.get('https://localhost:44384/api/User/GetUser/' + this.loginForm.value.userName)
+        this._http.get(`${environment.urlApi}api/User/GetUser/` + this.loginForm.value.userName)
           .subscribe(response => {
             localStorage.setItem('dataUser', JSON.stringify(response))
             this._router.navigate(['main']);
         })
-
-
       },
       error => {
         this.alert = true;

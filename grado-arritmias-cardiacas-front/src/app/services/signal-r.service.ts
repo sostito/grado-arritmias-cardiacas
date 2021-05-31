@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" if you are using a new library
 import { Store } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
 
 import * as TaskActions from './../../store/tasks.actions';
 
@@ -19,7 +20,7 @@ export class SignalRService {
  private hubConnection: signalR.HubConnection
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://localhost:44384/heartbeathub', {
+                            .withUrl(`${environment.urlApi}heartbeathub`, {
                             skipNegotiation: true,
                             transport: signalR.HttpTransportType.WebSockets
                           })

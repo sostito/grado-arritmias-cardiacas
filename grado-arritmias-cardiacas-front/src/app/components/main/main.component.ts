@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Task } from 'src/app/interfaces/TaskModel';
 import { User } from 'src/app/interfaces/UserModel.interface';
 import { SignalRService } from 'src/app/services/signal-r.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main',
@@ -201,7 +202,7 @@ export class MainComponent /*implements OnInit*/ {
   }
 
   getUser(){
-    this._http.get(`https://localhost:44384/api/User/GetUser/${localStorage.getItem('userLoged')}`)
+    this._http.get(`${environment.urlApi}api/User/GetUser/${localStorage.getItem('userLoged')}`)
       .subscribe((data: User) => {
         if(data !== null){
           this.userData = data;

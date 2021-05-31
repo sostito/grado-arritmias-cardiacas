@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output } from '@angular/core';
 import locale from 'date-fns/locale/en-US';
 import { DatepickerOptions } from 'ng2-datepicker';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-history',
@@ -142,7 +143,7 @@ export class HistoryComponent implements OnInit {
       FinalDate: this.datePipe.transform(this.finalDate, 'yyyy-MM-dd')
     }
 
-    this._http.post('https://localhost:44384/api/History/GetHistory/', request )
+    this._http.post(`${environment.urlApi}api/History/GetHistory/`, request )
       .subscribe(response => {
         this.historyData = response
         this.getDataStillLine();

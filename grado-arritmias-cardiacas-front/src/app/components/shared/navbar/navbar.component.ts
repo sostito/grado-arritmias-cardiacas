@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-declare  var $:any;
+declare var $;
 
 @Component({
   selector: 'app-navbar',
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   }
 
   CloseNavbar(){
-    $("#navbarTog").click();
+    $("#navbarNavDropdown").click();
   }
 
 }
