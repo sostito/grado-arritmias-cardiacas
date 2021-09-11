@@ -18,7 +18,7 @@ Different variables that can lead to heart problems were characterized as well a
     ![R-Calc](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/R-Calculation.png?raw=true)
       
 - ### Pulse Sensor MAX30102
-    - El pulsioxímetro y sensor cardiaco **MAX30100**, mostrado en la Figura 1, combina LEDs, un fotodetector, óptica optimizada y procesamiento de bajo ruido para detectar pulsioximetría y ritmo cardiaco   
+    - The **MAX30100** pulse oximeter and heart sensor, combines LEDs, a photodetector, optimized optics and low noise processing to detect pulse oximetry and heart rhythm  
 - ### Arduino Uno R3
     - The Arduino Uno is a board based on the **_ATmega328_** microcontroller. It has 14 pins for digital input / output (6 of these can be used as PWM), 6 analog inputs, **_16 MHz_** crystal oscillator, USB interface, power jack, ICSP connector, and reset button. Its operating voltage is 5V, 32 KB flash memory (**_ATmega328_**), 0.5 KB used by bootloader and its clock speed is 16MHz.
 ---
