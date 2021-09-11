@@ -1,4 +1,5 @@
 # PROTOTYPE DEVELOPMENT FOR THE SENSING OF CARDIAC ARRHYTHMIAS THROUGH IOT
+
 ---
 ## _Abstract_
 _The respository describes the development of a monitoring prototype based on web technologies and monitoring devices. Hardware so that your cardiac status can be tracked, considerations to be taken into account by the user in their current and future status, monitoring and alerting of possible cardiac arrhythmias, as well as blood oxygen saturation and its data more important. The methodology was as follows.
@@ -13,6 +14,8 @@ Different variables that can lead to heart problems were characterized as well a
    
 - ### SPO2 calculation
     - **MAX3010x** `SpO2` measurements use two different wavelength LEDs to identify the ratio of oxygenated hemoglobin to deoxygenated hemoglobin.
+    
+    ![R-Calc](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/R-Calculation.png?raw=true)
       
 - ### Pulse Sensor MAX30102
     - El pulsioxímetro y sensor cardiaco **MAX30100**, mostrado en la Figura 1, combina LEDs, un fotodetector, óptica optimizada y procesamiento de bajo ruido para detectar pulsioximetría y ritmo cardiaco   
@@ -23,20 +26,24 @@ Different variables that can lead to heart problems were characterized as well a
 
 As a starting point, it is established that the model will work with a `client-server` software architecture where bidirectional communication will be handled, in addition there is a database that allows storing the records of both heart rate and `SPO2` calculated by the sensor
 
--- image
+![architecture](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/Project-architecture.png?raw=true)
 
 The flow that a user would go through when navigating the application in normal use, going from obtaining the data to displaying the complementary information
 
---impage
+![flow-graph](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/Flow-graph.png?raw=true)
 
 ## _Database structure_
 
---  image
+![flow-graph](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/DataBase-Structure.png?raw=true)
 
 ---
 ## _Backend implementation_
 
 This component constitutes the server layer and is developed in `.NET Core`, which is a free, open source, managed computing framework, in which `ASP.NET` Core `SignalR` was used, which is an open source library that simplifies the addition of real-time web functionality to applications
+
+### Folder Structure
+
+![backend-folder](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/backend-folder-structure.png?raw=true)
 
 ## Techs
 | Tech | Documentation |
@@ -46,6 +53,9 @@ This component constitutes the server layer and is developed in `.NET Core`, whi
 ---
 ## _Frontend Implementation_
 This component constitutes the presentation bed and is made in `Angular` version 9, Angular is an application design framework and a development platform to create efficient and sophisticated single page applications `SPA`.
+
+### Folder Structure
+![frontend-folder](https://github.com/sostito/grado-arritmias-cardiacas/blob/master/documentation/frontend-folder-structure.png?raw=true)
 
 ## Techs
 | Tech | Documentation |
